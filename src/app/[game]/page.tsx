@@ -75,7 +75,7 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
         />
         <div className="relative grid items-center gap-14 lg:grid-cols-12">
           <div className="lg:col-span-7">
-            <GameIcon game={game} size={112} className={`max-md:!size-24 ${shots.length === 0 ? "lg:hidden" : ""}`} />
+            <GameIcon game={game} size={112} eager sizes="(max-width: 767px) 96px, 112px" className={`max-md:!size-24 ${shots.length === 0 ? "lg:hidden" : ""}`} />
             <p className="eyebrow mt-10" style={{ color: "var(--game-fg)" }}>
               {game.subtitle}
             </p>
@@ -119,6 +119,8 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
               <GameIcon
                 game={game}
                 size={320}
+                priority
+                sizes="(max-width: 767px) 240px, 320px"
                 className="rotate-[-6deg] shadow-2xl shadow-shadow/50 max-md:!size-60 max-md:!rounded-[53px]"
               />
             </div>

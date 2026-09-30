@@ -19,7 +19,7 @@ export function GameHeader({ game }: { game: Game }) {
         </Link>
 
         <Link href={`/${game.slug}/`} className="flex min-w-0 items-center gap-2.5">
-          <GameIcon game={game} size={28} />
+          <GameIcon game={game} size={28} eager />
           <span className="truncate font-display font-semibold tracking-tight">{game.name}</span>
         </Link>
 

@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Games } from "@/components/Games";
 import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
+import { MotionProvider } from "@/components/MotionProvider";
 import { Nav } from "@/components/Nav";
 import { Projects } from "@/components/Projects";
 import { games } from "@/data/games";
@@ -24,7 +25,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <MotionProvider>
       <Nav />
       <main id="main" tabIndex={-1}>
         <Hero />
@@ -45,6 +46,6 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    </>
+    </MotionProvider>
   );
 }

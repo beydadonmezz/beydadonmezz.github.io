@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
+import { usePrefersReducedMotion } from "@/lib/useReducedMotion";
 
 type Props = {
   children: React.ReactNode;
@@ -11,8 +11,10 @@ type Props = {
   as?: "div" | "li" | "section" | "p" | "span";
 };
 
+const EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
+
 /**
- * Fades and lifts content in when it scrolls into view.
+ * Fades and lifts content in when it scrolls into view (plain CSS transition).
  *
  * Content is visible by default (server HTML, no JS, reduced motion). It is
  * only hidden, and then revealed on intersection, when it starts fully below
@@ -21,9 +23,9 @@ type Props = {
  * placed the scroll position for the new page.
  */
 export function Reveal({ children, className, delay = 0, y = 32, as = "div" }: Props) {
-  const Comp = motion[as];
+  const Comp = as;
   const ref = useRef<HTMLElement>(null);
-  const reduce = useReducedMotion();
+  const reduce = usePrefersReducedMotion();
   const [state, setState] = useState<"visible" | "waiting" | "revealing">("visible");
 
   useEffect(() => {
@@ -43,16 +45,15 @@ export function Reveal({ children, className, delay = 0, y = 32, as = "div" }: P
     return () => io.disconnect();
   }, [reduce]);
 
+  const style: React.CSSProperties | undefined =
+    state === "waiting"
+      ? { opacity: 0, transform: `translate3d(0, ${y}px, 0)` }
+      : state === "revealing"
+        ? { transition: `opacity 1s ${EASE} ${delay}s, transform 1s ${EASE} ${delay}s` }
+        : undefined;
+
   return (
-    <Comp
-      ref={ref as React.Ref<never>}
-      className={className}
-      initial={false}
-      animate={state === "waiting" ? { opacity: 0, y } : { opacity: 1, y: 0 }}
-      transition={
-        state === "revealing" ? { duration: 1, delay, ease: [0.16, 1, 0.3, 1] } : { duration: 0 }
-      }
-    >
+    <Comp ref={ref as React.Ref<never>} className={className} style={style}>
       {children}
     </Comp>
   );
