@@ -1,4 +1,5 @@
 import type { Game } from "@/data/types";
+import { iconSrcSet } from "@/lib/images";
 
 /** App icon with iOS-style corner radius, or a tinted monogram placeholder. */
 export function GameIcon({ game, size = 96, className = "" }: { game: Game; size?: number; className?: string }) {
@@ -8,6 +9,8 @@ export function GameIcon({ game, size = 96, className = "" }: { game: Game; size
       // eslint-disable-next-line @next/next/no-img-element
       <img
         src={game.icon}
+        srcSet={iconSrcSet(game.icon)}
+        sizes={`${size}px`}
         alt={`${game.name} app icon`}
         width={size}
         height={size}

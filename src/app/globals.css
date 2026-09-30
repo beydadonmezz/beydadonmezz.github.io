@@ -267,7 +267,12 @@ html.lenis body {
   }
 }
 
-.page-enter {
+/*
+ * Page transition into/between game pages. Only for client-side navigations
+ * (ScrollManager sets data-nav="client"): on a hard load the content must be
+ * visible from the first paint, or the hero can't count as LCP.
+ */
+html[data-nav="client"] .page-enter {
   animation: page-enter 0.8s var(--ease-out-expo) both;
 }
 @keyframes page-enter {
@@ -281,7 +286,7 @@ html.lenis body {
   .reveal-line > span,
   .fade-in,
   .rise-in,
-  .page-enter {
+  html[data-nav="client"] .page-enter {
     animation: none;
     transform: none;
     opacity: 1;

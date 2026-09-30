@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { Award, Game, Project } from "@/data/types";
+import { countProjects } from "@/lib/project-counts";
 import { Reveal } from "./Reveal";
 import { SectionLabel } from "./SectionLabel";
 
@@ -67,14 +68,11 @@ export function Projects({ projects, games }: { projects: Project[]; games: Game
   const [filter, setFilter] = useState<Filter>("all");
   const [expanded, setExpanded] = useState(false);
   const [touched, setTouched] = useState(false);
+  // Heading, tabs and "Show all" all read from this one count.
+  const counts = countProjects(projects, games);
   const filtered = filter === "all" ? items : items.filter((i) => i.category === filter);
+  const filteredCount = counts[filter];
   const visible = expanded ? filtered : filtered.slice(0, INITIAL_COUNT);
-  const counts = {
-    all: items.length,
-    web: items.filter((i) => i.category === "web").length,
-    mobile: items.filter((i) => i.category === "mobile").length,
-    games: items.filter((i) => i.category === "games").length,
-  };
 
   return (
     <section id="projects" aria-labelledby="projects-title" className="gutter relative py-28 md:py-40">
@@ -88,8 +86,11 @@ export function Projects({ projects, games }: { projects: Project[]; games: Game
             Selected
             <br />
             <span className="font-serif font-normal tracking-[-0.02em] text-accent-fg italic">projects</span>
-            <sup className="ml-2 align-super font-mono text-[0.16em] font-normal tracking-normal text-muted">
-              ({projects.length})
+            <sup
+              data-count="heading"
+              className="ml-2 align-super font-mono text-[0.16em] font-normal tracking-normal text-muted"
+            >
+              ({counts.all})
             </sup>
           </h2>
         </Reveal>
@@ -112,7 +113,7 @@ export function Projects({ projects, games }: { projects: Project[]; games: Game
             >
               {labels[f]}
               <span className={`ml-1.5 font-mono text-[0.7rem] ${filter === f ? "text-bg/60" : "text-muted"}`}>
-                {counts[f]}
+                <span data-count={f}>{counts[f]}</span>
               </span>
             </button>
           ))}
@@ -122,7 +123,7 @@ export function Projects({ projects, games }: { projects: Project[]; games: Game
       {/* Only fade the list when the visitor switches filters, never on first render. */}
       <ProjectList key={filter} items={visible} fade={touched} />
 
-      {filtered.length > INITIAL_COUNT && (
+      {filteredCount > INITIAL_COUNT && (
         <div className="mt-12 flex justify-center">
           <button
             type="button"
@@ -130,7 +131,13 @@ export function Projects({ projects, games }: { projects: Project[]; games: Game
             aria-expanded={expanded}
             className="h-14 rounded-full border border-fg/25 px-8 font-medium transition-colors duration-500 hover:border-fg hover:bg-fg hover:text-bg"
           >
-            {expanded ? "Show fewer" : `Show all ${filtered.length}`}
+            {expanded ? (
+              "Show fewer"
+            ) : (
+              <>
+                Show all <span data-count="show-all">{filteredCount}</span>
+              </>
+            )}
           </button>
         </div>
       )}

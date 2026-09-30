@@ -64,6 +64,8 @@ export function ScrollManager() {
       first.current = false;
       return;
     }
+    // From here on, page transitions may animate (see .page-enter in globals.css).
+    document.documentElement.dataset.nav = "client";
     const pop = isPop.current;
     isPop.current = false;
 

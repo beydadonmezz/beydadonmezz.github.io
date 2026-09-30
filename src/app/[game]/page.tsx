@@ -7,6 +7,7 @@ import { SectionLabel } from "@/components/SectionLabel";
 import { games } from "@/data/games";
 import { profile } from "@/data/profile";
 import { getGame } from "@/lib/games";
+import { screenSrcSet } from "@/lib/images";
 
 export const dynamicParams = false;
 
@@ -131,6 +132,9 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={shots[1].src}
+                    srcSet={screenSrcSet(shots[1])}
+                    sizes="(max-width: 480px) 54vw, 260px"
+                    fetchPriority="low"
                     alt=""
                     width={shots[1].width}
                     height={shots[1].height}
@@ -140,6 +144,8 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={shots[0].src}
+                  srcSet={screenSrcSet(shots[0])}
+                  sizes="(max-width: 480px) 62vw, 300px"
                   alt={shots[0].alt}
                   width={shots[0].width}
                   height={shots[0].height}
@@ -222,6 +228,8 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={s.src}
+                  srcSet={screenSrcSet(s)}
+                  sizes="(max-width: 480px) 68vw, 280px"
                   alt={s.alt}
                   width={s.width}
                   height={s.height}

@@ -35,6 +35,8 @@ npm run build      # static site in ./out
 
 1. Copy assets into `public/games/<slug>/`: `icon.png` (1024px, used for social previews),
    `icon-512.webp` (shown on the site) and `screen-1.webp`… (store screenshots, ~800px wide).
+   Then run `sh scripts/game-image-variants.sh` to create the smaller `icon-128/256.webp` and
+   `screen-N-480.webp` variants the pages serve via `srcset` (the build fails if one is missing).
 2. Add an entry to `src/data/games.ts`. The landing page `/<slug>/` is generated automatically.
 3. Put the game's published privacy / terms / support URLs in `legal` (Turkish versions under
    `legal.tr`). This site only links to them: legal pages are never copied into this repo, so the
@@ -44,6 +46,15 @@ npm run build      # static site in ./out
 
 Theme colours (`theme.accent`, `theme.secondary`) come from the app icon; `accent` must stay readable on
 the near-black background.
+
+## Build checks
+
+`npm run build` runs two guards after `next build` and fails (so nothing deploys) if either fails:
+
+- `scripts/check-counts.mjs`: the project counts rendered on the home page agree
+  (heading = All = Web + Mobile + Games, and "Show all N"). Games count as projects. All counts
+  come from `countProjects()` in `src/lib/project-counts.ts`.
+- `scripts/check-assets.mjs`: every local `src` / `srcset` in the built HTML exists.
 
 ## Things that must keep working
 
