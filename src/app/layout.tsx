@@ -14,14 +14,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin", "latin-ext"],
   variable: "--font-geist-mono",
   display: "swap",
-  preload: false,
 });
 const instrument = Instrument_Serif({
   subsets: ["latin", "latin-ext"],
   weight: "400",
   style: ["italic"],
   variable: "--font-instrument",
-  display: "swap",
+  // Only used for accent words; "optional" means a late load never reflows the hero.
+  display: "optional",
 });
 
 const description = `${profile.name} is a ${profile.title} based in ${profile.location}, building with React, Next.js, TypeScript and React Native. Selected work and independent iOS games.`;
