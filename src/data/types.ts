@@ -16,6 +16,8 @@ export type Project = {
   height: number;
 };
 
+export type LegalLinks = { privacy: string; terms?: string; support?: string };
+
 export type GameFeature = { title: string; body: string };
 
 export type GameScreenshot = {
@@ -47,12 +49,13 @@ export type Game = {
   /** null renders a disabled "Coming soon to the App Store" state. */
   appStoreUrl: string | null;
   platforms: string;
-  /** Contact address shown on the support page. */
+  /** Support contact shown on the game page. */
   supportEmail: string | null;
+  /** The game's own website, if it has one. */
+  website?: string;
   /**
-   * Where each legal page was originally published (the URLs submitted to
-   * Apple / AdMob). Those URLs must keep working; the pages on this site are
-   * mirrors and link back to them.
+   * The legal and support pages submitted to App Store Connect. They are the
+   * single source: this site only links to them and never copies them.
    */
-  officialLinks: Partial<Record<"privacy" | "terms" | "support" | "website", string>>;
+  legal: LegalLinks & { tr?: Partial<LegalLinks> };
 };

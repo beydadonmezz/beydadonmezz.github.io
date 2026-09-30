@@ -7,7 +7,6 @@ import { SectionLabel } from "@/components/SectionLabel";
 import { games } from "@/data/games";
 import { profile } from "@/data/profile";
 import { getGame } from "@/lib/games";
-import { hasLegal, legalTitles, type LegalKind } from "@/lib/legal";
 
 export const dynamicParams = false;
 
@@ -37,7 +36,18 @@ export async function generateMetadata({ params }: { params: Promise<{ game: str
 export default async function GamePage({ params }: { params: Promise<{ game: string }> }) {
   const game = getGame((await params).game);
   const shots = game.screenshots;
-  const kinds: LegalKind[] = ["support", "privacy", ...(hasLegal(game.slug, "terms") ? (["terms"] as const) : [])];
+  const legal = [
+    game.legal.support && { label: "Support", href: game.legal.support },
+    { label: "Privacy Policy", href: game.legal.privacy },
+    game.legal.terms && { label: "Terms of Use", href: game.legal.terms },
+  ].filter((l): l is { label: string; href: string } => !!l);
+  const legalTr = game.legal.tr
+    ? [
+        game.legal.tr.support && { label: "Destek", href: game.legal.tr.support },
+        game.legal.tr.privacy && { label: "Gizlilik Politikası", href: game.legal.tr.privacy },
+        game.legal.tr.terms && { label: "Kullanım Koşulları", href: game.legal.tr.terms },
+      ].filter((l): l is { label: string; href: string } => !!l)
+    : [];
   const others = games.filter((g) => g.slug !== game.slug);
 
   const jsonLd = {
@@ -84,16 +94,16 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
               <AppStoreButton game={game} />
               <p className="text-sm text-muted">
                 {game.platforms}
-                {game.officialLinks.website && (
+                {game.website && (
                   <>
                     {" · "}
                     <a
-                      href={game.officialLinks.website}
+                      href={game.website}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-fg/80 underline underline-offset-4 hover:text-fg"
                     >
-                      {new URL(game.officialLinks.website).hostname}
+                      {new URL(game.website).hostname}
                     </a>
                   </>
                 )}
@@ -102,26 +112,29 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
           </div>
 
           {shots.length > 0 && (
-            <div className="relative mx-auto flex w-full max-w-md justify-center lg:col-span-5 lg:max-w-none">
-              {shots[1] && (
-                // eslint-disable-next-line @next/next/no-img-element
+            <div className="relative flex justify-center lg:col-span-5">
+              {/* Sized like a phone: capped by width and by viewport height, whatever the column width. */}
+              <div className="relative translate-x-[16%]" style={{ width: phoneWidth(shots[0], "62vw", 300, 70) }}>
+                {shots[1] && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={shots[1].src}
+                    alt=""
+                    width={shots[1].width}
+                    height={shots[1].height}
+                    className="absolute top-[6%] -left-[42%] w-[86%] rotate-[-8deg] rounded-[1.6rem] opacity-70 shadow-2xl shadow-black/60"
+                  />
+                )}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={shots[1].src}
-                  alt=""
-                  width={shots[1].width}
-                  height={shots[1].height}
-                  className="absolute top-8 left-[4%] w-[52%] rotate-[-8deg] rounded-[1.6rem] opacity-70 shadow-2xl shadow-black/60"
+                  src={shots[0].src}
+                  alt={shots[0].alt}
+                  width={shots[0].width}
+                  height={shots[0].height}
+                  fetchPriority="high"
+                  className="relative w-full rotate-[4deg] rounded-[1.8rem] shadow-2xl shadow-black/70"
                 />
-              )}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={shots[0].src}
-                alt={shots[0].alt}
-                width={shots[0].width}
-                height={shots[0].height}
-                fetchPriority="high"
-                className="relative w-[60%] translate-x-[18%] rotate-[4deg] rounded-[1.8rem] shadow-2xl shadow-black/70"
-              />
+              </div>
             </div>
           )}
         </div>
@@ -188,12 +201,12 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
             </h2>
           </div>
           <ul
-            className="gutter mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-6 [scrollbar-width:thin] md:gap-6"
+            className="gutter mt-12 flex snap-x snap-mandatory scroll-px-[var(--gutter)] gap-4 overflow-x-auto pb-6 [scrollbar-width:thin] md:gap-6"
             tabIndex={0}
             aria-label={`${game.name} screenshots, scroll horizontally`}
           >
             {shots.map((s) => (
-              <li key={s.src} className="w-[68vw] max-w-[320px] shrink-0 snap-start sm:w-[42vw]">
+              <li key={s.src} className="shrink-0 snap-start" style={{ width: phoneWidth(s, "68vw", 280, 62) }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={s.src}
@@ -217,20 +230,57 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
           Help and legal
         </h2>
         <ul className="mt-10 grid gap-4 sm:grid-cols-3">
-          {kinds.map((k) => (
-            <li key={k}>
-              <Link
-                href={`/${game.slug}/${k}/`}
-                className="group flex h-full items-center justify-between rounded-2xl border border-line p-6 transition-colors duration-500 hover:border-fg/30"
+          {legal.map((l) => (
+            <li key={l.href}>
+              <a
+                href={l.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex h-full items-center justify-between gap-4 rounded-2xl border border-line p-6 transition-colors duration-500 hover:border-fg/30"
               >
-                <span className="font-display text-xl font-medium tracking-tight">{legalTitles[k]}</span>
-                <span aria-hidden className="transition-transform duration-500 group-hover:translate-x-1">
-                  →
+                <span className="font-display text-xl font-medium tracking-tight">{l.label}</span>
+                <span
+                  aria-hidden
+                  className="transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                >
+                  ↗
                 </span>
-              </Link>
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
             </li>
           ))}
         </ul>
+        <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted">
+          {game.supportEmail && (
+            <p>
+              Email{" "}
+              <a
+                href={`mailto:${game.supportEmail}?subject=${encodeURIComponent(`${game.name} support`)}`}
+                className="text-fg/85 underline underline-offset-4 hover:text-fg"
+              >
+                {game.supportEmail}
+              </a>
+            </p>
+          )}
+          {legalTr.length > 0 && (
+            <p lang="tr">
+              Türkçe:{" "}
+              {legalTr.map((l, i) => (
+                <span key={l.href}>
+                  {i > 0 && " · "}
+                  <a
+                    href={l.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-fg/85 underline underline-offset-4 hover:text-fg"
+                  >
+                    {l.label}
+                  </a>
+                </span>
+              ))}
+            </p>
+          )}
+        </div>
       </section>
 
       {/* More games */}
@@ -259,4 +309,10 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </main>
   );
+}
+
+/** Width for a screenshot shown as a phone: fluid on small screens, capped in px and by viewport height. */
+function phoneWidth(shot: { width: number; height: number }, fluid: string, maxPx: number, maxVh: number) {
+  const ratio = (shot.width / shot.height).toFixed(4);
+  return `min(${fluid}, ${maxPx}px, calc(${maxVh}vh * ${ratio}))`;
 }

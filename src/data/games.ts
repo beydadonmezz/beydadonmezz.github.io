@@ -1,9 +1,9 @@
 import type { Game } from "./types";
 
 /**
- * Independent iOS games. Each entry gets /<slug>/, /<slug>/privacy/ and
- * /<slug>/support/ (plus /<slug>/terms/ when a terms file exists).
- * Legal copy lives in src/content/legal/<slug>/<privacy|terms|support>.md.
+ * Independent iOS games. Each entry gets a landing page at /<slug>/.
+ * `legal` holds the privacy/terms/support URLs submitted to App Store Connect;
+ * the game page links to them (they are never copied into this repo).
  * Set `appStoreUrl` once the game is live to enable the App Store button.
  */
 export const games: Game[] = [
@@ -45,10 +45,15 @@ export const games: Game[] = [
     appStoreUrl: null,
     platforms: "For iPhone",
     supportEmail: "lingrid.sandbox@outlook.com",
-    officialLinks: {
+    legal: {
       privacy: "https://beydadonmezz.github.io/lingrid-site/privacy",
       terms: "https://beydadonmezz.github.io/lingrid-site/terms",
       support: "https://beydadonmezz.github.io/lingrid-site/support",
+      tr: {
+        privacy: "https://beydadonmezz.github.io/lingrid-site/tr/gizlilik",
+        terms: "https://beydadonmezz.github.io/lingrid-site/tr/kosullar",
+        support: "https://beydadonmezz.github.io/lingrid-site/tr/destek",
+      },
     },
   },
   {
@@ -82,10 +87,15 @@ export const games: Game[] = [
     appStoreUrl: null,
     platforms: "For iPhone and iPad",
     supportEmail: "fishburg.sandbox@outlook.com",
-    officialLinks: {
+    legal: {
       privacy: "https://beydadonmezz.github.io/fishburg-site/privacy/",
       terms: "https://beydadonmezz.github.io/fishburg-site/terms/",
       support: "https://beydadonmezz.github.io/fishburg-site/support/",
+      tr: {
+        privacy: "https://beydadonmezz.github.io/fishburg-site/tr/privacy/",
+        terms: "https://beydadonmezz.github.io/fishburg-site/tr/terms/",
+        support: "https://beydadonmezz.github.io/fishburg-site/tr/support/",
+      },
     },
   },
   {
@@ -126,8 +136,8 @@ export const games: Game[] = [
     appStoreUrl: null,
     platforms: "For iPhone",
     supportEmail: "support@bubblesway.app",
-    officialLinks: {
-      website: "https://bubblesway.app/",
+    website: "https://bubblesway.app/",
+    legal: {
       privacy: "https://bubblesway.app/privacy/",
       support: "https://bubblesway.app/support/",
     },
@@ -169,8 +179,8 @@ export const games: Game[] = [
     appStoreUrl: null,
     platforms: "For iPhone",
     supportEmail: "puzzlenumbers.sandbox@gmail.com",
-    officialLinks: {
-      website: "https://puzzlenumbers.app/",
+    website: "https://puzzlenumbers.app/",
+    legal: {
       privacy: "https://puzzlenumbers.app/privacy",
       terms: "https://puzzlenumbers.app/terms",
     },

@@ -174,8 +174,7 @@ function ProjectList({ items }: { items: Item[] }) {
               key={hovered.key}
               className="absolute -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl shadow-2xl shadow-black/50"
               style={{
-                width: "min(26vw, 380px)",
-                aspectRatio: previewRatio(hovered),
+                ...previewSize(hovered),
                 background: hovered.tint ?? "#1c1c1a",
               }}
               initial={{ opacity: 0, scale: 0.85 }}
@@ -198,10 +197,22 @@ function ProjectList({ items }: { items: Item[] }) {
   );
 }
 
-function previewRatio(item: Item) {
+/** Landscape preview box: this width, at a 1.6 aspect ratio. */
+const LANDSCAPE_WIDTH = "min(26vw, 380px)";
+const LANDSCAPE_RATIO = 1.6;
+
+/**
+ * Landscape covers use the fixed landscape box (cropped to 1.6).
+ * Portrait and square images keep their real aspect ratio, capped so they are
+ * never wider than the landscape box is tall, and never taller than 55vh.
+ */
+function previewSize(item: Item): React.CSSProperties {
   const r = item.width / item.height;
-  // Keep extreme (tall screenshots / wide banners) from getting huge.
-  return String(Math.min(Math.max(r, 0.62), 1.6));
+  if (r > 1) return { width: LANDSCAPE_WIDTH, aspectRatio: String(Math.min(r, LANDSCAPE_RATIO)) };
+  return {
+    width: `min(calc(${LANDSCAPE_WIDTH} / ${LANDSCAPE_RATIO}), calc(55vh * ${r.toFixed(4)}))`,
+    aspectRatio: `${item.width} / ${item.height}`,
+  };
 }
 
 function Row({ item, index, onHover }: { item: Item; index: number; onHover: (i: Item | null) => void }) {

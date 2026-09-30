@@ -35,10 +35,10 @@ npm run build      # static site in ./out
 
 1. Copy assets into `public/games/<slug>/`: `icon.png` (1024px, used for social previews),
    `icon-512.webp` (shown on the site) and `screen-1.webp`… (store screenshots, ~800px wide).
-2. Add an entry to `src/data/games.ts`. Pages are generated automatically:
-   `/<slug>/`, `/<slug>/support/`, `/<slug>/privacy/`, and `/<slug>/terms/` if a terms file exists.
-3. Add the legal copy as Markdown in `src/content/legal/<slug>/privacy.md`, `terms.md`, `support.md`.
-   A missing `privacy.md` renders a clearly marked TODO block (and the page is `noindex`).
+2. Add an entry to `src/data/games.ts`. The landing page `/<slug>/` is generated automatically.
+3. Put the game's published privacy / terms / support URLs in `legal` (Turkish versions under
+   `legal.tr`). This site only links to them: legal pages are never copied into this repo, so the
+   pages submitted to App Store Connect stay the single source.
 4. When the game goes live, set `appStoreUrl` to its App Store link. While it is `null` the page shows a
    disabled "Coming soon to the App Store" button.
 
@@ -49,7 +49,11 @@ the near-black background.
 
 - `public/app-ads.txt` is served at `/app-ads.txt`. AdMob reads it because this domain is the
   Marketing URL of the apps in App Store Connect. Don't remove it.
-- The URLs already submitted to Apple for LINGRID and Fishburg live under `/lingrid-site/…` and
-  `/fishburg-site/…`. Those are served by the separate `lingrid-site` and `fishburg-site` repositories
-  (GitHub Pages project sites take priority over this repo on those paths). Keep those repos published,
-  and don't create `lingrid-site/` or `fishburg-site/` folders here.
+- **The `lingrid-site` and `fishburg-site` repositories must stay published.** App Store Connect (and
+  AdMob's consent message, and the apps themselves) point to their pages:
+  `https://beydadonmezz.github.io/lingrid-site/privacy`, `/support`, `/terms`, `/tr/…` and
+  `https://beydadonmezz.github.io/fishburg-site/privacy/` (incl. `#choices`), `/support/`, `/terms/`,
+  `/tr/…`. GitHub Pages serves those project repos on their paths ahead of this repo. Don't unpublish or
+  rename them, and don't create `lingrid-site/` or `fishburg-site/` folders here.
+- Bubble Sway and Puzzle Numbers publish their legal pages on their own domains
+  (`bubblesway.app`, `puzzlenumbers.app`).
