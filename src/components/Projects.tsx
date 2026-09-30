@@ -66,6 +66,7 @@ export function Projects({ projects, games }: { projects: Project[]; games: Game
 
   const [filter, setFilter] = useState<Filter>("all");
   const [expanded, setExpanded] = useState(false);
+  const [touched, setTouched] = useState(false);
   const filtered = filter === "all" ? items : items.filter((i) => i.category === filter);
   const visible = expanded ? filtered : filtered.slice(0, INITIAL_COUNT);
   const counts = {
@@ -99,7 +100,10 @@ export function Projects({ projects, games }: { projects: Project[]; games: Game
               key={f}
               type="button"
               aria-pressed={filter === f}
-              onClick={() => setFilter(f)}
+              onClick={() => {
+                setFilter(f);
+                setTouched(true);
+              }}
               className={`relative h-11 rounded-full border px-4 text-sm sm:px-5 transition-colors duration-300 ${
                 filter === f
                   ? "border-fg bg-fg text-bg"
@@ -115,7 +119,8 @@ export function Projects({ projects, games }: { projects: Project[]; games: Game
         </div>
       </div>
 
-      <ProjectList key={filter} items={visible} />
+      {/* Only fade the list when the visitor switches filters, never on first render. */}
+      <ProjectList key={filter} items={visible} fade={touched} />
 
       {filtered.length > INITIAL_COUNT && (
         <div className="mt-12 flex justify-center">
@@ -133,7 +138,7 @@ export function Projects({ projects, games }: { projects: Project[]; games: Game
   );
 }
 
-function ProjectList({ items }: { items: Item[] }) {
+function ProjectList({ items, fade }: { items: Item[]; fade: boolean }) {
   const reduce = useReducedMotion();
   const [hovered, setHovered] = useState<Item | null>(null);
   const x = useMotionValue(0);
@@ -151,7 +156,7 @@ function ProjectList({ items }: { items: Item[] }) {
     <div className="relative mt-16 md:mt-24" onPointerMove={onMove} onPointerLeave={() => setHovered(null)}>
       <motion.ul
         className="group/list border-t border-line"
-        initial={{ opacity: 0 }}
+        initial={fade ? { opacity: 0 } : false}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >

@@ -40,13 +40,15 @@ export function Hero() {
       </div>
 
       <motion.h1
+        tabIndex={-1}
         style={{ y: nameY }}
         className="relative mt-16 font-display text-[21vw] md:text-[clamp(3.6rem,17.5vw,17.5rem)] leading-[0.84] font-semibold tracking-[-0.055em]"
       >
         <span className="reveal-line">
           <span style={{ "--i": 0 } as React.CSSProperties}>{profile.firstName}</span>
         </span>
-        <span className="reveal-line text-right md:pr-[4vw]">
+        {/* 0.07em keeps the "y" descender and the "ö" dots clear of each other at every size. */}
+        <span className="reveal-line mt-[0.11em] text-right md:mt-[0.07em] md:pr-[4vw]">
           <span style={{ "--i": 1 } as React.CSSProperties}>
             {profile.lastName}
             <span className="text-accent-fg">.</span>

@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <>
       <Nav />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <Hero />
         <div aria-label="Awards" className="border-y border-line py-6 md:py-8">
           <Marquee

@@ -11,8 +11,9 @@ export function Footer() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (lenis && !reduce) lenis.scrollTo(0, { duration: 1.6 });
     else window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
-    // Move focus back to the top for keyboard users.
-    document.querySelector<HTMLElement>("a[href='#main']")?.focus({ preventScroll: true });
+    // Move focus to the page's main heading (not the skip link), so keyboard
+    // and screen-reader users continue from the top without a visible artefact.
+    document.querySelector<HTMLElement>("main h1")?.focus({ preventScroll: true });
   }
 
   return (

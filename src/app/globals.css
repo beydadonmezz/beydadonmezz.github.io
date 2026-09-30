@@ -167,6 +167,12 @@ body {
   border-radius: 4px;
 }
 
+/* Programmatic focus targets (main, page headings) never show a ring. */
+[tabindex="-1"]:focus,
+[tabindex="-1"]:focus-visible {
+  outline: none;
+}
+
 /* Lenis */
 html.lenis,
 html.lenis body {
@@ -207,12 +213,14 @@ html.lenis body {
 .reveal-line {
   display: block;
   overflow: clip;
-  padding-bottom: 0.08em;
-  margin-bottom: -0.08em;
+  /* Room for descenders (the "y" in Beydanur) so the clip never cuts them. */
+  padding-bottom: 0.2em;
+  margin-bottom: -0.2em;
 }
 .reveal-line > span {
   display: inline-block;
-  transform: translate3d(0, 105%, 0);
+  /* Start fully below the clip box (line height + descender room). */
+  transform: translate3d(0, 130%, 0);
   animation: reveal-up 1.1s var(--ease-out-expo) forwards;
   animation-delay: calc(var(--i, 0) * 90ms + 120ms);
 }

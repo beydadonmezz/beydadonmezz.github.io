@@ -64,7 +64,7 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
   };
 
   return (
-    <main id="main">
+    <main id="main" tabIndex={-1}>
       {/* Hero */}
       <section className="gutter relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-32">
         <div
@@ -79,6 +79,7 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
               {game.subtitle}
             </p>
             <h1
+              tabIndex={-1}
               className={`mt-4 font-display leading-[0.9] font-semibold tracking-[-0.05em] break-words ${
                 game.name.length > 16
                   ? "text-[clamp(2.75rem,7vw,6.5rem)]"
