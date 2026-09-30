@@ -68,9 +68,11 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
     <main id="main" tabIndex={-1}>
       {/* Hero */}
       <section className="gutter relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-32">
+        {/* Fixed offset (not a % of the section's height) so the glow can't shift when content settles. */}
+        {/* Fixed offset, not a % of the section height, so the glow never shifts when the hero settles. */}
         <div
           aria-hidden
-          className="pointer-events-none absolute top-[-20%] left-1/2 size-[140vw] max-w-[1400px] max-h-[1400px] -translate-x-1/2 rounded-full opacity-30 md:left-[70%]"
+          className="pointer-events-none absolute -top-48 left-1/2 size-[140vw] max-w-[1400px] max-h-[1400px] -translate-x-1/2 rounded-full opacity-30 md:left-[70%]"
           style={{ background: "radial-gradient(closest-side, var(--game-accent), transparent)" }}
         />
         <div className="relative grid items-center gap-14 lg:grid-cols-12">
