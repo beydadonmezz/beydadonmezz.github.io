@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Game } from "@/data/types";
+import { gameStyle } from "@/lib/games";
 import { GameIcon } from "./GameIcon";
 import { Reveal } from "./Reveal";
 import { SectionLabel } from "./SectionLabel";
@@ -15,7 +16,7 @@ export function Games({ games }: { games: Game[] }) {
             className="font-display text-[clamp(3rem,9vw,8.5rem)] leading-[0.9] font-semibold tracking-[-0.05em]"
           >
             Indie
-            <span className="font-serif font-normal tracking-[-0.02em] text-accent italic"> games</span>
+            <span className="font-serif font-normal tracking-[-0.02em] text-accent-fg italic"> games</span>
           </h2>
         </Reveal>
         <Reveal className="md:col-span-4" delay={0.1}>
@@ -30,13 +31,13 @@ export function Games({ games }: { games: Game[] }) {
           <Reveal as="li" key={game.slug} delay={(i % 2) * 0.1}>
             <Link
               href={`/${game.slug}/`}
-              className="group relative flex h-full min-h-[22rem] flex-col overflow-hidden rounded-[1.75rem] border border-line bg-bg-raised p-6 transition-colors duration-500 hover:border-fg/25 md:min-h-[28rem] md:p-9"
-              style={{ "--game-accent": game.theme.accent } as React.CSSProperties}
+              className="game-scope group relative flex h-full min-h-[22rem] flex-col overflow-hidden rounded-[1.75rem] border border-line bg-bg-raised p-6 transition-colors duration-500 hover:border-fg/25 md:min-h-[28rem] md:p-9"
+              style={gameStyle(game)}
             >
               <span
                 aria-hidden
                 className="pointer-events-none absolute -right-1/4 -bottom-1/2 size-[120%] rounded-full opacity-25 transition-[opacity,transform] duration-700 ease-out-expo group-hover:scale-110 group-hover:opacity-40"
-                style={{ background: `radial-gradient(closest-side, ${game.theme.accent}, transparent)` }}
+                style={{ background: "radial-gradient(closest-side, var(--game-accent), transparent)" }}
               />
               <span className="relative flex items-start justify-between gap-4">
                 <GameIcon
@@ -53,7 +54,7 @@ export function Games({ games }: { games: Game[] }) {
                   {game.name}
                 </span>
                 <span className="mt-3 block max-w-[40ch] text-fg/70">{game.tagline}</span>
-                <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium" style={{ color: game.theme.accent }}>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium" style={{ color: "var(--game-fg)" }}>
                   Explore the game
                   <span aria-hidden className="transition-transform duration-500 ease-out-expo group-hover:translate-x-1">
                     →

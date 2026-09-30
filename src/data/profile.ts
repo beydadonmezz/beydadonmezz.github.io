@@ -83,14 +83,14 @@ export const profile = {
       note: "Altın Örümcek 2022, 1st Place Banking & Finance",
     },
     {
-      name: "Yurdaer Architecture",
+      name: "Yurdaer Mimarlik",
       note: "Four Altın Örümcek 1st Places, Awwwards Honorable Mention 2025",
     },
     {
-      name: "Park Studio",
+      name: "Park",
       note: "Led frontend. Awwwards HM, FWA of the Day, London Design Awards 2024 Gold",
     },
-    { name: "Lu Community", note: null },
+    { name: "LuCommunity", note: null },
     { name: "Intenseye", note: null },
     { name: "Eşarj", note: null },
     { name: "Şeren Döviz", note: null },

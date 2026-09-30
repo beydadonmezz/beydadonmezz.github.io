@@ -41,7 +41,7 @@ export function Contact() {
         >
           Let&rsquo;s build
           <br />
-          something <span className="font-serif font-normal tracking-[-0.02em] text-accent italic">good</span>
+          something <span className="font-serif font-normal tracking-[-0.02em] text-accent-fg italic">good</span>
         </h2>
       </Reveal>
 
@@ -61,17 +61,17 @@ export function Contact() {
                   animate={{ y: 0 }}
                   exit={{ y: "-100%" }}
                   transition={{ duration: 0.35 }}
-                  className={copied ? "text-accent" : undefined}
+                  className={copied ? "text-accent-fg" : undefined}
                 >
                   {copied ? "✓ Copied to clipboard" : "Click to copy email"}
                 </motion.span>
               </AnimatePresence>
             </span>
           </span>
-          <span className="block font-display text-[clamp(1.6rem,8.2vw,6.5rem)] leading-none font-medium tracking-[-0.04em] break-words transition-colors duration-500 group-hover:text-accent">
+          <span className="block font-display text-[clamp(1.6rem,8.2vw,6.5rem)] leading-none font-medium tracking-[-0.04em] break-words transition-colors duration-500 group-hover:text-accent-fg">
             {user}
             <wbr />
-            <span className="text-muted transition-colors duration-500 group-hover:text-accent/70">@{domain}</span>
+            <span className="text-muted transition-colors duration-500 group-hover:text-accent-fg/70">@{domain}</span>
           </span>
         </button>
         <span className="sr-only" role="status" aria-live="polite">

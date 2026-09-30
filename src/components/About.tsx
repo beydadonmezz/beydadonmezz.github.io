@@ -131,10 +131,17 @@ function Word({
   progress: MotionValue<number>;
   range: [number, number];
 }) {
-  const opacity = useTransform(progress, range, [0.4, 1]);
+  // 0 → 1 as the word scrolls in; the dimmed floor (--dim) is a theme token so
+  // unlit words always keep 3:1 contrast.
+  const lit = useTransform(progress, range, [0, 1]);
   return (
     <>
-      <motion.span style={{ opacity }}>{children}</motion.span>{" "}
+      <motion.span
+        className="opacity-[calc(var(--dim)+(1-var(--dim))*var(--lit))]"
+        style={{ "--lit": lit } as unknown as React.CSSProperties}
+      >
+        {children}
+      </motion.span>{" "}
     </>
   );
 }

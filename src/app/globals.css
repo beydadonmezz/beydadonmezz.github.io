@@ -11,6 +11,12 @@
   --color-line: var(--line);
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
+  /* The accent used as text/icons: lime on dark, deep olive on light. */
+  --color-accent-fg: var(--accent-fg);
+  --color-badge: var(--badge-bg);
+  --color-badge-fg: var(--badge-fg);
+  --color-shadow: var(--shadow);
+  --color-game-fg: var(--game-fg);
 
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
@@ -21,15 +27,116 @@
 }
 
 :root {
+  --gutter: clamp(1rem, 4vw, 3.5rem);
+  --accent-ink: #11130a;
+}
+
+/*
+ * Themes. <html data-theme> is set before first paint by the inline script in
+ * layout.tsx; without JS the system preference applies.
+ */
+:root,
+:root[data-theme="dark"] {
   --bg: #0c0c0b;
   --bg-raised: #151513;
   --fg: #eeebe4;
   --muted: #9a968d;
   --line: rgb(238 235 228 / 0.12);
   --accent: #dcf76e;
-  --accent-ink: #11130a;
-  --gutter: clamp(1rem, 4vw, 3.5rem);
+  --accent-fg: #dcf76e;
+  --badge-bg: rgb(220 247 110 / 0.12);
+  --badge-fg: #dcf76e;
+  --glow: rgb(220 247 110 / 0.16);
+  --shadow: #000000;
+  --grain-opacity: 0.05;
+  --dim: 0.4;
   color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: #f3f1ea;
+  --bg-raised: #fbfaf6;
+  --fg: #141412;
+  --muted: #5c5a53;
+  --line: rgb(20 20 18 / 0.12);
+  --accent: #d4f25a;
+  --accent-fg: #4b6300;
+  --badge-bg: #d4f25a;
+  --badge-fg: #11130a;
+  --glow: rgb(196 236 60 / 0.38);
+  --shadow: #5b5342;
+  --grain-opacity: 0.045;
+  --dim: 0.5;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --bg: #f3f1ea;
+    --bg-raised: #fbfaf6;
+    --fg: #141412;
+    --muted: #5c5a53;
+    --line: rgb(20 20 18 / 0.12);
+    --accent: #d4f25a;
+    --accent-fg: #4b6300;
+    --badge-bg: #d4f25a;
+    --badge-fg: #11130a;
+    --glow: rgb(196 236 60 / 0.38);
+    --shadow: #5b5342;
+    --grain-opacity: 0.045;
+    --dim: 0.5;
+    color-scheme: light;
+  }
+}
+
+/* Per-game colour: set inline as --game-accent / --game-accent-light by gameStyle(). */
+.game-scope {
+  --game-fg: var(--game-accent);
+}
+:root[data-theme="light"] .game-scope {
+  --game-fg: var(--game-accent-light);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .game-scope {
+    --game-fg: var(--game-accent-light);
+  }
+}
+
+/* Theme toggle: the active pill slides between the two segments. */
+.theme-pill {
+  transition: transform 0.5s var(--ease-out-expo);
+}
+:root[data-theme="dark"] .theme-pill,
+:root:not([data-theme]) .theme-pill {
+  transform: translateX(100%);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .theme-pill {
+    transform: none;
+  }
+}
+.theme-seg {
+  color: color-mix(in oklab, var(--fg) 78%, transparent);
+}
+.theme-seg:hover {
+  color: var(--fg);
+}
+:root[data-theme="light"] .theme-seg[data-value="light"],
+:root[data-theme="dark"] .theme-seg[data-value="dark"] {
+  color: var(--accent-ink);
+}
+
+/* Short colour cross-fade while the theme switches (skipped for reduced motion in JS). */
+html.theme-switching,
+html.theme-switching *:not(.theme-pill),
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition:
+    background-color 0.45s ease,
+    color 0.45s ease,
+    border-color 0.45s ease,
+    fill 0.45s ease,
+    box-shadow 0.45s ease !important;
 }
 
 html {
@@ -55,7 +162,7 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-fg);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -92,7 +199,7 @@ html.lenis body {
   inset: 0;
   z-index: 60;
   pointer-events: none;
-  opacity: 0.05;
+  opacity: var(--grain-opacity);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -173,6 +280,9 @@ html.lenis body {
   }
   .marquee-track {
     animation: none;
+  }
+  .theme-pill {
+    transition: none;
   }
   html {
     scroll-behavior: auto;

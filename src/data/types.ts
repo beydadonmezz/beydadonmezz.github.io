@@ -1,15 +1,25 @@
 export type ProjectCategory = "web" | "mobile";
 
+export type Award = {
+  /** e.g. "Altın Örümcek 1st Place", "Awwwards Honorable Mention". */
+  name: string;
+  /** How many times it was won (shown as "4×"); defaults to 1. */
+  count?: number;
+};
+
 export type Project = {
   slug: string;
   name: string;
   /** One sentence shown in the list. */
   description: string;
-  /** External link (live site or App Store page). */
-  url: string;
+  /**
+   * The client's live site (or App Store page). null when the site is offline:
+   * the project is still listed, just not linked.
+   */
+  url: string | null;
   category: ProjectCategory;
-  /** Award text rendered as a badge, e.g. "Awwwards Honorable Mention". */
-  award?: string | null;
+  /** Each award becomes a badge; projects are ordered by total award count. */
+  awards?: Award[];
   /** Cover image in /public, e.g. "/projects/park-studio.webp". */
   image: string;
   width: number;
@@ -44,8 +54,12 @@ export type Game = {
   /** 1024px PNG used for social previews. */
   iconLarge: string | null;
   screenshots: GameScreenshot[];
-  /** Colours taken from the app icon. `accent` must read well on near-black. */
-  theme: { accent: string; secondary: string };
+  /**
+   * Colours taken from the app icon. `accent` is used for glows and as text on
+   * the dark theme; `accentOnLight` is the same hue, dark enough for text on the
+   * light theme (≥ 4.5:1 on #f3f1ea).
+   */
+  theme: { accent: string; accentOnLight: string; secondary: string };
   /** null renders a disabled "Coming soon to the App Store" state. */
   appStoreUrl: string | null;
   platforms: string;

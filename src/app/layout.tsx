@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { Providers } from "@/components/Providers";
 import { profile } from "@/data/profile";
+import { themeColors, themeInitScript } from "@/lib/theme";
 import "./globals.css";
 
 const bricolage = Bricolage_Grotesque({
@@ -58,8 +59,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0c0c0b",
-  colorScheme: "dark",
+  colorScheme: "dark light",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -67,7 +67,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       className={`${bricolage.variable} ${geist.variable} ${geistMono.variable} ${instrument.variable}`}
+      // data-theme is set by the inline script below before React hydrates.
+      suppressHydrationWarning
     >
+      <head>
+        <meta name="theme-color" content={themeColors.dark} suppressHydrationWarning />
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="grain">
         <a
           href="#main"

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Game } from "@/data/types";
 import { GameIcon } from "./GameIcon";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function GameHeader({ game }: { game: Game }) {
   return (
@@ -22,15 +23,17 @@ export function GameHeader({ game }: { game: Game }) {
           <span className="truncate font-display font-semibold tracking-tight">{game.name}</span>
         </Link>
 
-        <a
-          href={game.legal.privacy}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden text-sm text-fg/75 transition-colors hover:text-fg sm:inline"
-        >
-          Privacy ↗
-        </a>
-        <span className="w-9 sm:hidden" aria-hidden />
+        <div className="flex items-center gap-4">
+          <ThemeToggle compact />
+          <a
+            href={game.legal.privacy}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden text-sm text-fg/75 transition-colors hover:text-fg md:inline"
+          >
+            Privacy ↗
+          </a>
+        </div>
       </div>
     </header>
   );

@@ -74,8 +74,8 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
         />
         <div className="relative grid items-center gap-14 lg:grid-cols-12">
           <div className="lg:col-span-7">
-            <GameIcon game={game} size={112} className="max-md:!size-24" />
-            <p className="eyebrow mt-10" style={{ color: "var(--game-accent)" }}>
+            <GameIcon game={game} size={112} className={`max-md:!size-24 ${shots.length === 0 ? "lg:hidden" : ""}`} />
+            <p className="eyebrow mt-10" style={{ color: "var(--game-fg)" }}>
               {game.subtitle}
             </p>
             <h1
@@ -111,6 +111,17 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
             </div>
           </div>
 
+          {shots.length === 0 && game.icon && (
+            // No screenshots yet: the icon carries the hero on its own.
+            <div className="relative flex justify-center lg:col-span-5">
+              <GameIcon
+                game={game}
+                size={320}
+                className="rotate-[-6deg] shadow-2xl shadow-shadow/50 max-md:!size-60 max-md:!rounded-[53px]"
+              />
+            </div>
+          )}
+
           {shots.length > 0 && (
             <div className="relative flex justify-center lg:col-span-5">
               {/* Sized like a phone: capped by width and by viewport height, whatever the column width. */}
@@ -122,7 +133,7 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
                     alt=""
                     width={shots[1].width}
                     height={shots[1].height}
-                    className="absolute top-[6%] -left-[42%] w-[86%] rotate-[-8deg] rounded-[1.6rem] opacity-70 shadow-2xl shadow-black/60"
+                    className="absolute top-[6%] -left-[42%] w-[86%] rotate-[-8deg] rounded-[1.6rem] opacity-70 shadow-2xl shadow-shadow/60"
                   />
                 )}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -132,7 +143,7 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
                   width={shots[0].width}
                   height={shots[0].height}
                   fetchPriority="high"
-                  className="relative w-full rotate-[4deg] rounded-[1.8rem] shadow-2xl shadow-black/70"
+                  className="relative w-full rotate-[4deg] rounded-[1.8rem] shadow-2xl shadow-shadow/70"
                 />
               </div>
             </div>
@@ -181,7 +192,7 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
               delay={(i % 3) * 0.08}
               className="rounded-3xl border border-line bg-bg-raised p-7 md:p-8"
             >
-              <span className="font-mono text-xs" style={{ color: "var(--game-accent)" }}>
+              <span className="font-mono text-xs" style={{ color: "var(--game-fg)" }}>
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className="mt-8 font-display text-2xl font-semibold tracking-tight">{f.title}</h3>

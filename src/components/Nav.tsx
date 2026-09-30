@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { profile } from "@/data/profile";
 import { scrollToId } from "@/lib/scroll";
+import { ThemeToggle } from "./ThemeToggle";
 
 export const navLinks = [
   { id: "about", label: "About" },
@@ -75,7 +76,7 @@ export function Nav() {
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       >
         <div
-          className={`gutter flex h-16 items-center justify-between transition-[background-color,border-color,backdrop-filter] duration-500 md:h-20 ${
+          className={`gutter relative flex h-16 items-center justify-between transition-[background-color,border-color,backdrop-filter] duration-500 md:h-20 ${
             scrolled || open
               ? "border-b border-line bg-bg/75 backdrop-blur-xl"
               : "border-b border-transparent"
@@ -93,7 +94,7 @@ export function Nav() {
             <span className="hidden sm:inline">{profile.name}</span>
           </Link>
 
-          <nav aria-label="Primary" className="hidden md:block">
+          <nav aria-label="Primary" className="absolute left-1/2 hidden -translate-x-1/2 lg:block">
             <ul className="flex items-center gap-1 rounded-full border border-line bg-bg-raised/60 p-1 backdrop-blur">
               {navLinks.map((l) => {
                 const isActive = isHome && active === l.id;
@@ -122,20 +123,23 @@ export function Nav() {
             </ul>
           </nav>
 
-          <a
-            href={`mailto:${profile.email}`}
-            className="hidden items-center gap-2 text-sm text-fg/80 transition-colors hover:text-fg md:flex"
-          >
-            <span className="relative flex size-2">
-              <span className="absolute inline-flex size-full rounded-full bg-accent opacity-60 motion-safe:animate-ping" />
-              <span className="relative inline-flex size-2 rounded-full bg-accent" />
-            </span>
-            Say hello
-          </a>
+          <div className="flex items-center gap-3 lg:gap-5">
+            <ThemeToggle className="hidden sm:grid" />
+            <ThemeToggle compact className="sm:hidden" />
+            <a
+              href={`mailto:${profile.email}`}
+              className="hidden items-center gap-2 text-sm text-fg/80 transition-colors hover:text-fg lg:flex"
+            >
+              <span className="relative flex size-2">
+                <span className="absolute inline-flex size-full rounded-full bg-accent-fg opacity-60 motion-safe:animate-ping" />
+                <span className="relative inline-flex size-2 rounded-full bg-accent-fg" />
+              </span>
+              Say hello
+            </a>
 
           <button
             type="button"
-            className="relative grid size-11 place-items-center rounded-full border border-line md:hidden"
+            className="relative grid size-11 place-items-center rounded-full border border-line lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -148,6 +152,7 @@ export function Nav() {
               className={`absolute h-px w-4 bg-fg transition-transform duration-500 ${open ? "-rotate-45" : "translate-y-[3px]"}`}
             />
           </button>
+          </div>
         </div>
       </motion.header>
 
@@ -158,7 +163,7 @@ export function Nav() {
             role="dialog"
             aria-modal="true"
             aria-label="Menu"
-            className="fixed inset-0 z-40 flex flex-col justify-between bg-bg px-[var(--gutter)] pt-24 pb-10 md:hidden"
+            className="fixed inset-0 z-40 flex flex-col justify-between bg-bg px-[var(--gutter)] pt-24 pb-10 lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, transition: { duration: 0.3 } }}
@@ -177,7 +182,7 @@ export function Nav() {
                         onClick={(e) => go(e, l.id)}
                         className="flex items-baseline gap-4 py-1 font-display text-6xl font-semibold tracking-tight"
                       >
-                        <span className="font-mono text-xs text-accent">0{i + 1}</span>
+                        <span className="font-mono text-xs text-accent-fg">0{i + 1}</span>
                         {l.label}
                       </Link>
                     </motion.div>

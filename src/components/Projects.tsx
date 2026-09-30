@@ -9,7 +9,7 @@ import {
 } from "motion/react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import type { Game, Project } from "@/data/types";
+import type { Award, Game, Project } from "@/data/types";
 import { Reveal } from "./Reveal";
 import { SectionLabel } from "./SectionLabel";
 
@@ -19,10 +19,10 @@ type Item = {
   key: string;
   name: string;
   description: string;
-  href: string;
+  href: string | null;
   external: boolean;
   category: Exclude<Filter, "all">;
-  award: string | null;
+  awards: Award[];
   image: string | null;
   width: number;
   height: number;
@@ -42,7 +42,7 @@ export function Projects({ projects, games }: { projects: Project[]; games: Game
         href: p.url,
         external: true,
         category: p.category,
-        award: p.award ?? null,
+        awards: p.awards ?? [],
         image: p.image,
         width: p.width,
         height: p.height,
@@ -54,7 +54,7 @@ export function Projects({ projects, games }: { projects: Project[]; games: Game
         href: `/${g.slug}/`,
         external: false,
         category: "games" as const,
-        award: null,
+        awards: [],
         image: g.screenshots[0]?.src ?? g.icon,
         width: g.screenshots[0]?.width ?? 1024,
         height: g.screenshots[0]?.height ?? 1024,
@@ -86,7 +86,7 @@ export function Projects({ projects, games }: { projects: Project[]; games: Game
           >
             Selected
             <br />
-            <span className="font-serif font-normal tracking-[-0.02em] text-accent italic">projects</span>
+            <span className="font-serif font-normal tracking-[-0.02em] text-accent-fg italic">projects</span>
             <sup className="ml-2 align-super font-mono text-[0.16em] font-normal tracking-normal text-muted">
               ({projects.length})
             </sup>
@@ -172,10 +172,10 @@ function ProjectList({ items }: { items: Item[] }) {
           {hovered?.image && (
             <motion.div
               key={hovered.key}
-              className="absolute -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl shadow-2xl shadow-black/50"
+              className="absolute -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl shadow-2xl shadow-shadow/50"
               style={{
                 ...previewSize(hovered),
-                background: hovered.tint ?? "#1c1c1a",
+                background: hovered.tint ?? "var(--bg-raised)",
               }}
               initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -242,24 +242,28 @@ function Row({ item, index, onHover }: { item: Item; index: number; onHover: (i:
         <span className="font-display text-2xl leading-tight font-medium tracking-tight transition-transform duration-500 ease-out-expo md:text-[1.75rem] md:group-hover/row:translate-x-3">
           {item.name}
         </span>
-        <span aria-hidden className="mt-1 text-lg text-muted md:hidden">
-          {item.external ? "↗" : "→"}
-        </span>
+        {item.href && (
+          <span aria-hidden className="mt-1 text-lg text-muted md:hidden">
+            {item.external ? "↗" : "→"}
+          </span>
+        )}
       </span>
       <span className="mt-2 block text-sm leading-relaxed text-fg/65 md:col-span-4 md:mt-0 md:pointer-coarse:col-span-3">
         {item.description}
       </span>
       <span className="mt-4 flex flex-wrap items-center gap-2 md:col-span-3 md:mt-0 md:justify-end">
-        {item.award && <AwardBadge text={item.award} />}
+        {item.awards.map((a) => (
+          <AwardBadge key={a.name} award={a} />
+        ))}
         <span className="rounded-full border border-line px-2.5 py-1 font-mono text-[0.65rem] tracking-wider text-muted uppercase">
           {item.category}
         </span>
       </span>
       <span
         aria-hidden
-        className="hidden text-right text-xl text-muted transition-[transform,color] duration-500 ease-out-expo group-hover/row:text-accent md:col-span-1 md:block md:group-hover/row:-translate-y-0.5 md:group-hover/row:translate-x-0.5"
+        className="hidden text-right text-xl text-muted transition-[transform,color] duration-500 ease-out-expo group-hover/row:text-accent-fg md:col-span-1 md:block md:group-hover/row:-translate-y-0.5 md:group-hover/row:translate-x-0.5"
       >
-        {item.external ? "↗" : "→"}
+        {item.href ? (item.external ? "↗" : "→") : ""}
       </span>
     </>
   );
@@ -270,6 +274,15 @@ function Row({ item, index, onHover }: { item: Item; index: number; onHover: (i:
     onPointerEnter: (e: React.PointerEvent) => e.pointerType === "mouse" && onHover(item),
     onFocus: () => onHover(null),
   };
+
+  // Site offline: still listed (and previewed on hover), but not a link.
+  if (!item.href) {
+    return (
+      <div className={className} onPointerEnter={handlers.onPointerEnter}>
+        {content}
+      </div>
+    );
+  }
 
   return item.external ? (
     <a
@@ -289,9 +302,10 @@ function Row({ item, index, onHover }: { item: Item; index: number; onHover: (i:
   );
 }
 
-export function AwardBadge({ text }: { text: string }) {
+export function AwardBadge({ award }: { award: Award }) {
+  const text = award.count && award.count > 1 ? `${award.count}× ${award.name}` : award.name;
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/12 px-2.5 py-1 text-[0.7rem] font-medium text-accent">
+    <span className="inline-flex items-center gap-1.5 rounded-full bg-badge px-2.5 py-1 text-[0.7rem] font-medium text-badge-fg">
       <svg aria-hidden viewBox="0 0 16 16" className="size-3 fill-current">
         <path d="M8 .8l2.1 4.6 5 .5-3.8 3.4 1.1 4.9L8 11.7l-4.4 2.5 1.1-4.9L.9 5.9l5-.5z" />
       </svg>

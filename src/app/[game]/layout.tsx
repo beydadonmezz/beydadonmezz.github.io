@@ -19,7 +19,7 @@ export default async function GameLayout({
   const game = getGame((await params).game);
 
   return (
-    <div style={gameStyle(game)}>
+    <div className="game-scope" style={gameStyle(game)}>
       <GameHeader game={game} />
       {children}
       <Footer />

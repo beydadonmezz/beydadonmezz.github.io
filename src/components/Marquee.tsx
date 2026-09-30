@@ -14,7 +14,7 @@ export function Marquee({
       {items.map((item) => (
         <li key={item} className="flex items-center whitespace-nowrap">
           <span className="px-6 md:px-10">{item}</span>
-          <span className="text-accent" aria-hidden>
+          <span className="text-accent-fg" aria-hidden>
             {separator}
           </span>
         </li>

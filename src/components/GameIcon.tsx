@@ -12,7 +12,7 @@ export function GameIcon({ game, size = 96, className = "" }: { game: Game; size
         width={size}
         height={size}
         style={style}
-        className={`shrink-0 shadow-lg shadow-black/40 ${className}`}
+        className={`shrink-0 shadow-lg shadow-shadow/40 ${className}`}
       />
     );
   }
@@ -31,7 +31,7 @@ export function GameIcon({ game, size = 96, className = "" }: { game: Game; size
         background: `linear-gradient(145deg, ${game.theme.accent}, ${game.theme.secondary})`,
         fontSize: size * 0.36,
       }}
-      className={`grid shrink-0 place-items-center font-display font-bold text-black/80 shadow-lg shadow-black/40 ${className}`}
+      className={`grid shrink-0 place-items-center font-display font-bold text-black/80 shadow-lg shadow-shadow/40 ${className}`}
     >
       {initials}
     </span>

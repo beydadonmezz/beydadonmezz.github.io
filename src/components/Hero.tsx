@@ -27,7 +27,7 @@ export function Hero() {
       <motion.div
         aria-hidden
         style={{ y: glowY }}
-        className="pointer-events-none absolute -top-[30vh] right-[-20vw] size-[90vw] max-w-[1100px] max-h-[1100px] rounded-full bg-[radial-gradient(closest-side,rgb(220_247_110/0.16),transparent)] md:right-[-10vw]"
+        className="pointer-events-none absolute -top-[30vh] right-[-20vw] size-[90vw] max-w-[1100px] max-h-[1100px] rounded-full bg-[radial-gradient(closest-side,var(--glow),transparent)] md:right-[-10vw]"
       />
 
       <div className="relative mb-auto flex flex-wrap items-start justify-between gap-4 pt-6">
@@ -49,7 +49,7 @@ export function Hero() {
         <span className="reveal-line text-right md:pr-[4vw]">
           <span style={{ "--i": 1 } as React.CSSProperties}>
             {profile.lastName}
-            <span className="text-accent">.</span>
+            <span className="text-accent-fg">.</span>
           </span>
         </span>
         <span className="sr-only">, {profile.title}</span>
@@ -61,7 +61,7 @@ export function Hero() {
           style={{ "--i": 2 } as React.CSSProperties}
         >
           {lead}
-          <em className="font-serif text-[1.12em] font-normal text-accent">{emphasis}</em>
+          <em className="font-serif text-[1.12em] font-normal text-accent-fg">{emphasis}</em>
           {rest}
         </p>
         <div
