@@ -28,6 +28,9 @@ export function ScrollManager() {
   const positions = useRef(new Map<string, number>());
   const isPop = useRef(false);
   const first = useRef(true);
+  // Scroll position at the moment a link was clicked (Lenis may keep gliding
+  // until the route commits; "back" should return to where the user clicked).
+  const leaving = useRef<{ path: string; y: number } | null>(null);
 
   useEffect(() => {
     if ("scrollRestoration" in history) history.scrollRestoration = "manual";
@@ -36,15 +39,25 @@ export function ScrollManager() {
     };
     // Remember where each page was, so browser back can return to it.
     const onScroll = () => positions.current.set(pathRef.current, window.scrollY);
+    const onClick = (e: MouseEvent) => {
+      if ((e.target as Element | null)?.closest?.("a[href]")) {
+        leaving.current = { path: pathRef.current, y: window.scrollY };
+      }
+    };
     window.addEventListener("popstate", onPop);
     window.addEventListener("scroll", onScroll, { passive: true });
+    document.addEventListener("click", onClick, true);
     return () => {
       window.removeEventListener("popstate", onPop);
       window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("click", onClick, true);
     };
   }, []);
 
   useLayoutEffect(() => {
+    const prev = pathRef.current;
+    if (leaving.current?.path === prev && prev !== pathname) positions.current.set(prev, leaving.current.y);
+    leaving.current = null;
     pathRef.current = pathname;
     // The first render is a full page load: the browser already placed it.
     if (first.current) {
@@ -62,11 +75,15 @@ export function ScrollManager() {
     y = Math.max(0, Math.min(y, document.documentElement.scrollHeight - window.innerHeight));
 
     const l = lenisRef.current;
-    if (l) {
-      l.resize(); // new page height; also drops the in-flight animation
-      l.scrollTo(y, { immediate: true, force: true });
-    }
+    // Stop any in-flight glide explicitly: Lenis.scrollTo() returns early (and
+    // leaves a running duration animation alone) when the target equals its
+    // current target, so it can't be relied on to cancel the animation.
+    // stop() and start() both reset() Lenis, which stops the animation and
+    // syncs its internal position to the real one.
+    l?.stop();
+    l?.resize(); // the new page's height
     window.scrollTo(0, y);
+    l?.start();
     positions.current.set(pathname, y);
   }, [pathname]);
 
