@@ -55,6 +55,8 @@ the near-black background.
   (heading = All = Web + Mobile + Games, and "Show all N"). Games count as projects. All counts
   come from `countProjects()` in `src/lib/project-counts.ts`.
 - `scripts/check-assets.mjs`: every local `src` / `srcset` in the built HTML exists.
+- `scripts/check-app-ads.mjs`: `out/app-ads.txt` exists with the exact AdMob line for
+  `pub-6308223268641775`, and `out/` has no `lingrid-site/` or `fishburg-site/` folder (self-tested).
 
 ## Things that must keep working
 

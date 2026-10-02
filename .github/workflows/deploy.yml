@@ -26,10 +26,10 @@ jobs:
       - uses: actions/configure-pages@v5
       - run: npm ci
       - run: npm run build
-      - name: Ensure .nojekyll and app-ads.txt are in the output
+      - name: Ensure .nojekyll and the exact app-ads.txt line are in the output
         run: |
           touch out/.nojekyll
-          test -f out/app-ads.txt
+          node scripts/check-app-ads.mjs
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out

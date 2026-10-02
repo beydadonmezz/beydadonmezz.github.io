@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/check-counts.mjs && node scripts/check-assets.mjs",
+    "build": "next build && node scripts/check-counts.mjs && node scripts/check-assets.mjs && node scripts/check-app-ads.mjs --self-test && node scripts/check-app-ads.mjs",
     "start": "npx serve out",
     "typecheck": "tsc --noEmit"
   },
