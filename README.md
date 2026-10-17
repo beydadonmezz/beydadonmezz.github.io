@@ -55,18 +55,23 @@ the near-black background.
   (heading = All = Web + Mobile + Games, and "Show all N"). Games count as projects. All counts
   come from `countProjects()` in `src/lib/project-counts.ts`.
 - `scripts/check-assets.mjs`: every local `src` / `srcset` in the built HTML exists.
-- `scripts/check-app-ads.mjs`: `out/app-ads.txt` exists with the exact AdMob line for
-  `pub-6308223268641775`, and `out/` has no `lingrid-site/` or `fishburg-site/` folder (self-tested).
+- `scripts/check-app-ads.mjs`: `out/app-ads.txt` exists with the exact DIRECT lines for AdMob
+  (`pub-6308223268641775`), Unity Ads and Liftoff Monetize, and `out/` has no `lingrid-site/`, `fishburg-site/`
+  or `snugpath-site/` folder (self-tested).
 
 ## Things that must keep working
 
-- `public/app-ads.txt` is served at `/app-ads.txt`. AdMob reads it because this domain is the
-  Marketing URL of the apps in App Store Connect. Don't remove it.
-- **The `lingrid-site` and `fishburg-site` repositories must stay published.** App Store Connect (and
+- `public/app-ads.txt` is served at `/app-ads.txt`. AdMob and the mediation networks read it because this domain
+  is the Marketing URL of the apps in App Store Connect (and the developer website of their Play listings). It is
+  one file for all apps: keep every line, and add a network's published block when a game starts using that
+  network (Unity Ads and Liftoff Monetize since Snugpath; Mintegral once its account is approved, see Snugpath's
+  docs/ADS.md). Don't remove it.
+- **The `lingrid-site`, `fishburg-site` and `snugpath-site` repositories must stay published.** App Store Connect (and
   AdMob's consent message, and the apps themselves) point to their pages:
   `https://beydadonmezz.github.io/lingrid-site/privacy`, `/support`, `/terms`, `/tr/…` and
   `https://beydadonmezz.github.io/fishburg-site/privacy/` (incl. `#choices`), `/support/`, `/terms/`,
-  `/tr/…`. GitHub Pages serves those project repos on their paths ahead of this repo. Don't unpublish or
-  rename them, and don't create `lingrid-site/` or `fishburg-site/` folders here.
+  `/tr/…`, and `https://beydadonmezz.github.io/snugpath-site/privacy`, `/terms`, `/tr/gizlilik`, `/tr/kosullar`.
+  GitHub Pages serves those project repos on their paths ahead of this repo. Don't unpublish or rename them, and
+  don't create `lingrid-site/`, `fishburg-site/` or `snugpath-site/` folders here.
 - Bubble Sway and Puzzle Numbers publish their legal pages on their own domains
   (`bubblesway.app`, `puzzlenumbers.app`).
