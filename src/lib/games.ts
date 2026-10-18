@@ -16,3 +16,8 @@ export function gameStyle(game: Pick<Game, "theme">) {
     "--game-secondary": game.theme.secondary,
   } as React.CSSProperties;
 }
+
+/** Legal links are absolute URLs (published elsewhere) or site paths (hosted here, src/data/legal/). */
+export function isExternal(href: string) {
+  return /^https?:\/\//.test(href);
+}

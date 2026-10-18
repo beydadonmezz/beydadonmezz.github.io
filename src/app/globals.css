@@ -102,6 +102,17 @@
   }
 }
 
+/* Links inside hosted legal / support pages (src/components/LegalPage.tsx). */
+.legal-link {
+  color: var(--color-fg);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: color-mix(in oklab, var(--game-fg) 70%, transparent);
+}
+.legal-link:hover {
+  text-decoration-color: var(--game-fg);
+}
+
 /* Theme toggle: the active pill slides between the two segments. */
 .theme-pill {
   transition: transform 0.5s var(--ease-out-expo);

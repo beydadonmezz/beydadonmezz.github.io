@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Game } from "@/data/types";
+import { isExternal } from "@/lib/games";
 import { GameIcon } from "./GameIcon";
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -27,11 +28,10 @@ export function GameHeader({ game }: { game: Game }) {
           <ThemeToggle compact />
           <a
             href={game.legal.privacy}
-            target="_blank"
-            rel="noopener noreferrer"
+            {...(isExternal(game.legal.privacy) ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             className="hidden text-sm text-fg/75 transition-colors hover:text-fg md:inline"
           >
-            Privacy ↗
+            Privacy{isExternal(game.legal.privacy) && " ↗"}
           </a>
         </div>
       </div>

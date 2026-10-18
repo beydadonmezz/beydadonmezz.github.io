@@ -6,7 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
 import { games } from "@/data/games";
 import { profile } from "@/data/profile";
-import { getGame } from "@/lib/games";
+import { getGame, isExternal } from "@/lib/games";
 import { screenSrcSet } from "@/lib/images";
 
 export const dynamicParams = false;
@@ -257,8 +257,7 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
             <li key={l.href}>
               <a
                 href={l.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...(isExternal(l.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="group flex h-full items-center justify-between gap-4 rounded-2xl border border-line p-6 transition-colors duration-500 hover:border-fg/30"
               >
                 <span className="font-display text-xl font-medium tracking-tight">{l.label}</span>
@@ -266,9 +265,9 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
                   aria-hidden
                   className="transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 >
-                  ↗
+                  {isExternal(l.href) ? "↗" : "→"}
                 </span>
-                <span className="sr-only"> (opens in a new tab)</span>
+                {isExternal(l.href) && <span className="sr-only"> (opens in a new tab)</span>}
               </a>
             </li>
           ))}

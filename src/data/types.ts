@@ -69,7 +69,27 @@ export type Game = {
   website?: string;
   /**
    * The legal and support pages submitted to App Store Connect. They are the
-   * single source: this site only links to them and never copies them.
+   * single source: this site only links to them and never copies them, except
+   * for games whose pages live here (`hostedLegal` in src/data/legal/).
    */
   legal: LegalLinks & { tr?: Partial<LegalLinks> };
 };
+
+/** One section of a legal or support page hosted on this site. */
+export type LegalSection = {
+  heading: string;
+  /** Paragraphs; a string[] entry renders as a bulleted list. */
+  body: (React.ReactNode | React.ReactNode[])[];
+};
+
+export type LegalDoc = {
+  title: string;
+  /** e.g. "18 October 2026"; omitted for the support page. */
+  effective?: string;
+  /** Short intro shown under the title. */
+  intro?: React.ReactNode;
+  sections: LegalSection[];
+};
+
+/** Privacy policy and support page served at /<slug>/privacy/ and /<slug>/support/. */
+export type HostedLegal = { privacy: LegalDoc; support: LegalDoc };
