@@ -215,4 +215,43 @@ export const games: Game[] = [
       support: "/quiltdoku/support/",
     },
   },
+  {
+    slug: "snugpath",
+    name: "Snugpath",
+    subtitle: "A cozy path puzzle every day",
+    tagline: "Draw one path through every cell, passing the numbers in order.",
+    description: [
+      "Snugpath is a calm, cute logic puzzle. Draw one path that fills the whole grid: start at 1, pass the numbers in order and visit every cell exactly once. Walls block the way, and every puzzle has exactly one solution.",
+      "Today's Path brings a new daily puzzle, the same for everyone, with a streak to keep and a leaderboard for your time. The Path Map leads from small 5×5 grids to tricky 9×9 boards with walls, and the levels never run out.",
+      "Leaderboards on Game Center and Google Play Games, 11 languages, and no account needed. It plays offline.",
+    ],
+    features: [
+      { title: "One path, every cell", body: "Start at 1, pass the numbers in order and fill the grid with a single line. Walls block the way." },
+      { title: "Today's Path", body: "A new daily puzzle for everyone, with a streak and its own leaderboard for your time." },
+      {
+        title: "Endless levels",
+        body: "The Path Map runs from 5×5 to 9×9. The first 60 levels are free, then packs of 10 open with diamonds.",
+      },
+      { title: "One solution, always", body: "Every puzzle is checked to have exactly one solution." },
+      { title: "Themes, light and dark", body: "Path colour themes, light and dark mode, in 11 languages." },
+      { title: "Offline, no account", body: "Play anywhere without signing up; a free hint in every puzzle." },
+    ],
+    icon: "/games/snugpath/icon-512.webp",
+    iconLarge: "/games/snugpath/icon.png",
+    screenshots: [],
+    theme: { accent: "#a996f2", accentOnLight: "#6e55d6", secondary: "#f4a7c7" },
+    appStoreUrl: null,
+    platforms: "For iPhone, iPad and Android",
+    supportEmail: "snugpath.sandbox@outlook.com",
+    legal: {
+      privacy: "https://beydadonmezz.github.io/snugpath-site/privacy",
+      terms: "https://beydadonmezz.github.io/snugpath-site/terms",
+      support: "https://beydadonmezz.github.io/snugpath-site/support",
+      tr: {
+        privacy: "https://beydadonmezz.github.io/snugpath-site/tr/gizlilik",
+        terms: "https://beydadonmezz.github.io/snugpath-site/tr/kosullar",
+        support: "https://beydadonmezz.github.io/snugpath-site/tr/destek",
+      },
+    },
+  },
 ];
