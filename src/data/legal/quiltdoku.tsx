@@ -24,14 +24,14 @@ const ext = (href: string, label: string) => (
 export const quiltdokuLegal: HostedLegal = {
   privacy: {
     title: "Privacy Policy",
-    effective: "19 October 2026",
+    effective: "20 October 2026",
     sections: [
       {
         heading: "The short version",
         body: [
           "Quiltdoku has no account and no sign-up. We never ask for your name, email address, phone number or location.",
           "Your progress and your diamonds are saved on your device. We do not run a server, and the game has no analytics, crash reporting or tracking tools of its own. All puzzles are built into the app; it downloads nothing from us.",
-          "Ads are provided by Google AdMob together with its ad partners Unity Ads, Liftoff Monetize and Mintegral. They are personalised only if you agree (on iPhone and iPad in Apple's tracking prompt; in the EEA, the UK and Switzerland also in Google's consent form; in some US states you can opt out). Otherwise you get non-personalised ads.",
+          "Ads are provided by Google AdMob together with its ad partners Unity Ads and Liftoff Monetize. They are personalised only if you agree (on iPhone and iPad in Apple's tracking prompt; in the EEA, the UK and Switzerland also in Google's consent form; in some US states you can opt out). Otherwise you get non-personalised ads.",
           "Purchases (Remove Ads, diamond packs) are handled entirely by Apple or Google. We never see your payment details.",
           "Leaderboards are handled by Apple Game Center or Google Play Games, if you are signed in to them.",
           "The game works the same whatever you choose in any privacy prompt.",
@@ -63,16 +63,14 @@ export const quiltdokuLegal: HostedLegal = {
           "You can also choose to watch a rewarded video ad for an extra hint in a level, for free diamonds (at most five a day) or to double the diamonds of a level you just finished. These are always optional and labelled; the reward is given only when the ad network confirms you watched it. There are no banner ads.",
           <>
             Ads are requested through Google&rsquo;s Mobile Ads SDK (Google AdMob). AdMob lets these ad partners bid to
-            show an ad, and their SDKs are part of the app for that purpose: Unity Ads (Unity Technologies), Liftoff
-            Monetize (Liftoff Mobile, formerly Vungle) and Mintegral (Mintegral International Limited). Google and
-            these partners collect device and usage data such as your IP address, device type, operating system, app
+            show an ad, and their SDKs are part of the app for that purpose: Unity Ads (Unity Technologies) and Liftoff
+            Monetize (Liftoff Mobile, formerly Vungle). Google and these partners collect device and usage data such as your IP address, device type, operating system, app
             version and ad interactions, and, if you allow it, your device&rsquo;s advertising identifier, to show ads,
             measure them and prevent fraud. They receive it directly from their SDKs; it does not pass through us. See{" "}
             {ext("https://policies.google.com/technologies/partner-sites", "how Google uses data from apps that use its services")},{" "}
             {ext("https://policies.google.com/privacy", "Google's Privacy Policy")},{" "}
-            {ext("https://unity.com/legal/game-player-and-app-user-privacy-policy", "Unity's Privacy Policy")},{" "}
-            {ext("https://liftoff.io/privacy-policy/", "Liftoff's Privacy Policy")} and{" "}
-            {ext("https://www.mintegral.com/en/privacy", "Mintegral's Privacy Policy")}.
+            {ext("https://unity.com/legal/game-player-and-app-user-privacy-policy", "Unity's Privacy Policy")} and{" "}
+            {ext("https://liftoff.io/privacy-policy/", "Liftoff's Privacy Policy")}.
           </>,
           "Ads are limited to content rated for teens and older (Google's \"T\" rating) or lower.",
         ],
@@ -82,7 +80,7 @@ export const quiltdokuLegal: HostedLegal = {
         body: [
           "iPhone and iPad: the game asks for permission to track through Apple's prompt. If you choose \"Ask App Not to Track\", ads are non-personalised. You can change it any time in iOS Settings → Privacy & Security → Tracking.",
           "EEA, UK and Switzerland: Google's consent form appears before ads load. You can change your choices any time in the game: Settings → Ad privacy options. Your choice is passed to the ad partners through the IAB consent framework.",
-          "United States: where state privacy laws give you the right to opt out of the sale or sharing of personal data for targeted ads, you can do so in Settings → Ad privacy options. The game passes your choice to Google and to Unity Ads, Liftoff Monetize and Mintegral.",
+          "United States: where state privacy laws give you the right to opt out of the sale or sharing of personal data for targeted ads, you can do so in Settings → Ad privacy options. The game passes your choice to Google and to Unity Ads and Liftoff Monetize.",
           "Android: you can reset or delete your advertising ID in your phone's settings (Google → Ads).",
         ],
       },
