@@ -218,13 +218,14 @@ export const games: Game[] = [
     platforms: "For iPhone, iPad and Android",
     supportEmail: "snugpath.sandbox@outlook.com",
     legal: {
-      privacy: "https://beydadonmezz.github.io/snugdoku-site/privacy/",
-      terms: "https://beydadonmezz.github.io/snugdoku-site/terms/",
-      support: "https://beydadonmezz.github.io/snugdoku-site/support/",
+      // Hosted here since 2026-10-28 (src/data/legal/snugdoku.tsx); snugdoku-site only redirects to these.
+      privacy: "/snugdoku/privacy/",
+      terms: "/snugdoku/terms/",
+      support: "/snugdoku/support/",
       tr: {
-        privacy: "https://beydadonmezz.github.io/snugdoku-site/tr/privacy/",
-        terms: "https://beydadonmezz.github.io/snugdoku-site/tr/terms/",
-        support: "https://beydadonmezz.github.io/snugdoku-site/tr/support/",
+        privacy: "/snugdoku/tr/privacy/",
+        terms: "/snugdoku/tr/terms/",
+        support: "/snugdoku/tr/support/",
       },
     },
   },
