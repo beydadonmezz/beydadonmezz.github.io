@@ -12,7 +12,7 @@ export const snugdokuLegal: HostedLegal = {
       {
         heading: "1. Who is responsible",
         body: [
-          <>{"Beydanur Dönmez, the developer and publisher of the app, is responsible for the app and for this policy. You can reach us at "}<a href="mailto:snugpath.sandbox@outlook.com" className="legal-link">{"snugpath.sandbox@outlook.com"}</a>{"."}</>,
+          <>{"Beydanur Dönmez, the developer and publisher of the app, is responsible for the app and for this policy. You can reach us at "}<a href="mailto:snugdoku.sandbox@outlook.com" className="legal-link">{"snugdoku.sandbox@outlook.com"}</a>{"."}</>,
         ],
       },
       {
@@ -81,11 +81,11 @@ export const snugdokuLegal: HostedLegal = {
       {
         heading: "11. Additional information for users in Türkiye under the Personal Data Protection Law (KVKK)",
         body: [
-          <>{"Under Law No. 6698 on the Protection of Personal Data (Kişisel Verilerin Korunması Kanunu, \"KVKK\"), the data controller (veri sorumlusu) responsible for the personal data described in this policy is Beydanur Dönmez, the app's developer and publisher. For any KVKK-related request, write to "}<a href="mailto:snugpath.sandbox@outlook.com" className="legal-link">{"snugpath.sandbox@outlook.com"}</a>{"."}</>,
+          <>{"Under Law No. 6698 on the Protection of Personal Data (Kişisel Verilerin Korunması Kanunu, \"KVKK\"), the data controller (veri sorumlusu) responsible for the personal data described in this policy is Beydanur Dönmez, the app's developer and publisher. For any KVKK-related request, write to "}<a href="mailto:snugdoku.sandbox@outlook.com" className="legal-link">{"snugdoku.sandbox@outlook.com"}</a>{"."}</>,
           <>{"Under KVKK article 5, each purpose above rests on one legal basis. Storing your progress, diamonds, themes and settings on your device, handling the in-app purchase through Apple or Google Play, and sending your scores to Game Center or Google Play Games when you are signed in, are all necessary for the establishment or performance of the contract under which you use the app and the features you choose (article 5/2(c)); no separate consent is needed for these. Showing personalised advertising and using your device's advertising identifier for tracking rest on your explicit consent (article 5/1), given or withdrawn through the ATT and UMP consent screens described above. The data the advertising SDKs need to request, serve, measure and protect any ad even when you have not consented to tracking (for example coarse location, a non-tracking device identifier, and diagnostic, performance and crash data) rests on our legitimate interest, and that of Google and the advertising partners, in operating and securing the free, ad-supported version of the app, without prejudice to your fundamental rights and freedoms (article 5/2(f))."}</>,
           <>{"Yurt dışına aktarım / transfer abroad: Google (Mobile Ads SDK and UMP; on Android also Google Play Billing and Google Play Games), the advertising partners listed above (Unity Technologies, Liftoff Mobile, Inc.) and Apple (App Store and Game Center) may process the data described above on servers located outside Türkiye, including in the United States. This transfer takes place under KVKK article 9, as amended by Law No. 7499 with effect from 1 June 2024: for personalised advertising and tracking, the transfer rests on your explicit consent; for the purchase and the leaderboards, it rests on the transfer being directly related to the establishment or performance of the very service you asked for, one of the exceptional grounds listed in article 9(6). Providing the appropriate safeguards KVKK requires for these transfers (such as standard contractual clauses) is the responsibility of these companies, which receive the data directly from their SDKs; we do not operate a server of our own that receives this data."}</>,
           <>{"Under KVKK article 11, you have the right to: (a) learn whether your personal data is being processed; (b) request information about it if it has been processed; (c) learn the purpose of the processing and whether it is used in accordance with that purpose; (ç) know the third parties, in Türkiye or abroad, to whom your data is transferred; (d) request correction if it has been processed incompletely or incorrectly; (e) request its deletion or destruction, within the conditions set out in the law; (f) request that any correction, deletion or destruction be notified to the third parties to whom your data was transferred; (g) object to a result against you that arises solely from the automated analysis of your data; and (ğ) claim compensation for damage you suffer because of unlawful processing."}</>,
-          <>{"To exercise these rights, write to us at "}<a href="mailto:snugpath.sandbox@outlook.com" className="legal-link">{"snugpath.sandbox@outlook.com"}</a>{"; under KVKK article 13 we handle your request free of charge, as quickly as possible and within 30 days at the latest (a fee may apply only for a request that itself requires an additional cost, at the tariff the Personal Data Protection Board sets). If we reject your request, you find our answer insufficient, or we do not answer in time, KVKK article 14 lets you complain to the Personal Data Protection Board (Kişisel Verileri Koruma Kurulu, kvkk.gov.tr) within 30 days of learning our answer and, in any case, within 60 days of your original request."}</>,
+          <>{"To exercise these rights, write to us at "}<a href="mailto:snugdoku.sandbox@outlook.com" className="legal-link">{"snugdoku.sandbox@outlook.com"}</a>{"; under KVKK article 13 we handle your request free of charge, as quickly as possible and within 30 days at the latest (a fee may apply only for a request that itself requires an additional cost, at the tariff the Personal Data Protection Board sets). If we reject your request, you find our answer insufficient, or we do not answer in time, KVKK article 14 lets you complain to the Personal Data Protection Board (Kişisel Verileri Koruma Kurulu, kvkk.gov.tr) within 30 days of learning our answer and, in any case, within 60 days of your original request."}</>,
         ],
       },
       {
@@ -97,7 +97,7 @@ export const snugdokuLegal: HostedLegal = {
       {
         heading: "13. Contact",
         body: [
-          <>{"Beydanur Dönmez · "}<a href="mailto:snugpath.sandbox@outlook.com" className="legal-link">{"snugpath.sandbox@outlook.com"}</a></>,
+          <>{"Beydanur Dönmez · "}<a href="mailto:snugdoku.sandbox@outlook.com" className="legal-link">{"snugdoku.sandbox@outlook.com"}</a></>,
           <>{"Questions about the game itself (purchases, progress, leaderboards) are answered on the "}<a href="/snugdoku/support/" className="legal-link">{"Support page"}</a>{", which the app also opens from Settings > Support."}</>,
         ],
       },
@@ -159,14 +159,14 @@ export const snugdokuLegal: HostedLegal = {
       {
         heading: "9. Changes and contact",
         body: [
-          <>{"We may update these terms; the date above shows the latest version. Questions: Beydanur Dönmez · "}<a href="mailto:snugpath.sandbox@outlook.com" className="legal-link">{"snugpath.sandbox@outlook.com"}</a>{"."}</>,
+          <>{"We may update these terms; the date above shows the latest version. Questions: Beydanur Dönmez · "}<a href="mailto:snugdoku.sandbox@outlook.com" className="legal-link">{"snugdoku.sandbox@outlook.com"}</a>{"."}</>,
         ],
       },
     ],
   },
   support: {
     title: "Support",
-    intro: <>{"Questions, a problem or an idea? Write to Beydanur Dönmez at "}<a href="mailto:snugpath.sandbox@outlook.com" className="legal-link">{"snugpath.sandbox@outlook.com"}</a>{". Please tell us your device model, the app version (Settings, at the bottom) and what happened; we answer in English or Turkish."}</>,
+    intro: <>{"Questions, a problem or an idea? Write to Beydanur Dönmez at "}<a href="mailto:snugdoku.sandbox@outlook.com" className="legal-link">{"snugdoku.sandbox@outlook.com"}</a>{". Please tell us your device model, the app version (Settings, at the bottom) and what happened; we answer in English or Turkish."}</>,
     sections: [
       {
         heading: "Common questions",
@@ -186,7 +186,7 @@ export const snugdokuLegal: HostedLegal = {
       {
         heading: "1. Sorumlu kişi",
         body: [
-          <>{"Uygulamadan ve bu politikadan, uygulamanın geliştiricisi ve yayıncısı Beydanur Dönmez sorumludur. Bize "}<a href="mailto:snugpath.sandbox@outlook.com" className="legal-link">{"snugpath.sandbox@outlook.com"}</a>{" adresinden ulaşabilirsiniz."}</>,
+          <>{"Uygulamadan ve bu politikadan, uygulamanın geliştiricisi ve yayıncısı Beydanur Dönmez sorumludur. Bize "}<a href="mailto:snugdoku.sandbox@outlook.com" className="legal-link">{"snugdoku.sandbox@outlook.com"}</a>{" adresinden ulaşabilirsiniz."}</>,
         ],
       },
       {
@@ -255,11 +255,11 @@ export const snugdokuLegal: HostedLegal = {
       {
         heading: "11. 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında ek bilgiler",
         body: [
-          <>{"6698 sayılı Kişisel Verilerin Korunması Kanunu (\"KVKK\") kapsamında, bu politikada açıklanan kişisel veriler bakımından veri sorumlusu, uygulamanın geliştiricisi ve yayıncısı Beydanur Dönmez'dir. KVKK ile ilgili başvurularınızı "}<a href="mailto:snugpath.sandbox@outlook.com" className="legal-link">{"snugpath.sandbox@outlook.com"}</a>{" adresine yazılı olarak iletebilirsiniz."}</>,
+          <>{"6698 sayılı Kişisel Verilerin Korunması Kanunu (\"KVKK\") kapsamında, bu politikada açıklanan kişisel veriler bakımından veri sorumlusu, uygulamanın geliştiricisi ve yayıncısı Beydanur Dönmez'dir. KVKK ile ilgili başvurularınızı "}<a href="mailto:snugdoku.sandbox@outlook.com" className="legal-link">{"snugdoku.sandbox@outlook.com"}</a>{" adresine yazılı olarak iletebilirsiniz."}</>,
           <>{"KVKK'nın 5. maddesi uyarınca yukarıdaki her amaç tek bir hukuki sebebe dayanır. İlerlemenizin, elmaslarınızın, temalarınızın ve ayarlarınızın cihazınızda saklanması, uygulama içi satın almanın Apple veya Google Play üzerinden yürütülmesi ve Game Center'da veya Google Play Games'te oturum açtığınızda puanlarınızın gönderilmesi, uygulamayı ve seçtiğiniz özellikleri kullanmanıza dayanan sözleşmenin kurulması veya ifasıyla doğrudan doğruya ilgilidir (madde 5/2-c); bunlar için ayrıca rızanız gerekmez. Kişiselleştirilmiş reklam gösterilmesi ve cihaz tanımlayıcınızın izleme amacıyla kullanılması, yukarıda açıklanan ATT ve UMP onay ekranlarında verdiğiniz veya geri aldığınız açık rızanıza dayanır (madde 5/1). İzlemeye rıza vermemiş olsanız bile reklam SDK'larının herhangi bir reklamı istemesi, sunması, ölçmesi ve dolandırıcılığa karşı koruması için ihtiyaç duyduğu veriler (örneğin yaklaşık konum, izleme amaçlı olmayan bir cihaz tanımlayıcısı ve tanılama, performans ve çökme verileri), temel hak ve özgürlüklerinize zarar vermemek kaydıyla, uygulamanın ücretsiz ve reklam destekli sürümünün işletilmesi ve güvenliği konusunda bizim, Google'ın ve reklam ortaklarının meşru menfaatine dayanır (madde 5/2-f)."}</>,
           <>{"Yurt dışına aktarım: Google (Mobile Ads SDK ve UMP; Android'de ayrıca Google Play Faturalandırma ve Google Play Games), yukarıda sayılan reklam ortakları (Unity Technologies, Liftoff Mobile, Inc.) ve Apple (App Store ve Game Center), yukarıda açıklanan verileri başta Amerika Birleşik Devletleri olmak üzere Türkiye dışındaki sunucularında işleyebilir. Bu aktarım, 7499 sayılı Kanun'la 1 Haziran 2024 itibarıyla değişen KVKK'nın 9. maddesi kapsamında gerçekleşir: kişiselleştirilmiş reklam ve izleme için aktarımın hukuki sebebi açık rızanızdır; satın alma ve liderlik tabloları için aktarım, tam olarak talep ettiğiniz hizmetin kurulması veya ifasıyla doğrudan doğruya ilgili olduğundan 9. maddenin altıncı fıkrasındaki istisnai hâllerden birine dayanır. Bu aktarımlar için KVKK'nın aradığı uygun güvenceleri (örneğin standart sözleşmeleri) sağlamak, verileri kendi SDK'larından doğrudan alan bu şirketlerin sorumluluğundadır; bu verileri alan kendimize ait bir sunucu işletmiyoruz."}</>,
           <>{"KVKK'nın 11. maddesi uyarınca şu haklara sahipsiniz: (a) kişisel verinizin işlenip işlenmediğini öğrenme; (b) işlenmişse buna ilişkin bilgi talep etme; (c) işlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme; (ç) yurt içinde veya yurt dışında verilerinizin aktarıldığı üçüncü kişileri bilme; (d) eksik veya yanlış işlenmişse düzeltilmesini isteme; (e) kanunda öngörülen koşullar çerçevesinde silinmesini veya yok edilmesini isteme; (f) düzeltme, silme veya yok etme işlemlerinin verilerinizin aktarıldığı üçüncü kişilere bildirilmesini isteme; (g) işlenen verilerin münhasıran otomatik sistemlerle analiz edilmesi yoluyla aleyhinize bir sonucun ortaya çıkmasına itiraz etme; (ğ) kanuna aykırı işlenmesi sebebiyle zarara uğramanız hâlinde zararın giderilmesini talep etme."}</>,
-          <>{"Bu hakları kullanmak için "}<a href="mailto:snugpath.sandbox@outlook.com" className="legal-link">{"snugpath.sandbox@outlook.com"}</a>{" adresine yazabilirsiniz. KVKK'nın 13. maddesi uyarınca başvurunuzu en kısa sürede ve en geç otuz gün içinde ücretsiz olarak sonuçlandırırız (yalnızca ayrıca bir maliyet gerektiren işlemler için Kişisel Verileri Koruma Kurulunca belirlenen tarifedeki ücret alınabilir). Başvurunuzun reddedilmesi, cevabın yetersiz bulunması veya süresinde cevap verilmemesi hâlinde, KVKK'nın 14. maddesi uyarınca cevabımızı öğrendiğiniz tarihten itibaren otuz gün ve her hâlde başvuru tarihinizden itibaren altmış gün içinde Kişisel Verileri Koruma Kurulu'na (kvkk.gov.tr) şikâyette bulunabilirsiniz."}</>,
+          <>{"Bu hakları kullanmak için "}<a href="mailto:snugdoku.sandbox@outlook.com" className="legal-link">{"snugdoku.sandbox@outlook.com"}</a>{" adresine yazabilirsiniz. KVKK'nın 13. maddesi uyarınca başvurunuzu en kısa sürede ve en geç otuz gün içinde ücretsiz olarak sonuçlandırırız (yalnızca ayrıca bir maliyet gerektiren işlemler için Kişisel Verileri Koruma Kurulunca belirlenen tarifedeki ücret alınabilir). Başvurunuzun reddedilmesi, cevabın yetersiz bulunması veya süresinde cevap verilmemesi hâlinde, KVKK'nın 14. maddesi uyarınca cevabımızı öğrendiğiniz tarihten itibaren otuz gün ve her hâlde başvuru tarihinizden itibaren altmış gün içinde Kişisel Verileri Koruma Kurulu'na (kvkk.gov.tr) şikâyette bulunabilirsiniz."}</>,
         ],
       },
       {
@@ -271,7 +271,7 @@ export const snugdokuLegal: HostedLegal = {
       {
         heading: "13. İletişim",
         body: [
-          <>{"Beydanur Dönmez · "}<a href="mailto:snugpath.sandbox@outlook.com" className="legal-link">{"snugpath.sandbox@outlook.com"}</a></>,
+          <>{"Beydanur Dönmez · "}<a href="mailto:snugdoku.sandbox@outlook.com" className="legal-link">{"snugdoku.sandbox@outlook.com"}</a></>,
           <>{"Oyunla ilgili sorular (satın almalar, ilerleme, liderlik tabloları) "}<a href="/snugdoku/tr/support/" className="legal-link">{"Destek sayfasında"}</a>{" yanıtlanır; uygulama bu sayfayı Ayarlar > Destek'ten de açar."}</>,
         ],
       },
@@ -333,14 +333,14 @@ export const snugdokuLegal: HostedLegal = {
       {
         heading: "9. Değişiklikler ve iletişim",
         body: [
-          <>{"Bu koşulları güncelleyebiliriz; yukarıdaki tarih en son sürümü gösterir. Sorularınız için: Beydanur Dönmez · "}<a href="mailto:snugpath.sandbox@outlook.com" className="legal-link">{"snugpath.sandbox@outlook.com"}</a>{"."}</>,
+          <>{"Bu koşulları güncelleyebiliriz; yukarıdaki tarih en son sürümü gösterir. Sorularınız için: Beydanur Dönmez · "}<a href="mailto:snugdoku.sandbox@outlook.com" className="legal-link">{"snugdoku.sandbox@outlook.com"}</a>{"."}</>,
         ],
       },
     ],
   },
     support: {
     title: "Destek",
-    intro: <>{"Bir sorunuz, bir sorununuz ya da bir fikriniz mi var? Beydanur Dönmez adına "}<a href="mailto:snugpath.sandbox@outlook.com" className="legal-link">{"snugpath.sandbox@outlook.com"}</a>{" adresine yazın. Lütfen cihaz modelinizi, uygulama sürümünü (Ayarlar, en altta) ve ne olduğunu yazın; Türkçe veya İngilizce yanıt veririz."}</>,
+    intro: <>{"Bir sorunuz, bir sorununuz ya da bir fikriniz mi var? Beydanur Dönmez adına "}<a href="mailto:snugdoku.sandbox@outlook.com" className="legal-link">{"snugdoku.sandbox@outlook.com"}</a>{" adresine yazın. Lütfen cihaz modelinizi, uygulama sürümünü (Ayarlar, en altta) ve ne olduğunu yazın; Türkçe veya İngilizce yanıt veririz."}</>,
     sections: [
       {
         heading: "Sık sorulanlar",

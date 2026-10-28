@@ -220,7 +220,7 @@ export const games: Game[] = [
     theme: { accent: "#fdb449", accentOnLight: "#9a5c00", secondary: "#7fd8c4" },
     appStoreUrl: null,
     platforms: "For iPhone, iPad and Android",
-    supportEmail: "snugpath.sandbox@outlook.com",
+    supportEmail: "snugdoku.sandbox@outlook.com",
     legal: {
       // Hosted here since 2026-10-28 (src/data/legal/snugdoku.tsx); snugdoku-site only redirects to these.
       privacy: "/snugdoku/privacy/",
