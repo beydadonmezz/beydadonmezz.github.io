@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { games } from "@/data/games";
-import { hostedLegalSlugs } from "@/data/legal";
+import { hostedLegalPages, legalPath } from "@/data/legal";
 import { profile } from "@/data/profile";
 
 export const dynamic = "force-static";
@@ -16,13 +16,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
-    ...hostedLegalSlugs.flatMap((slug) =>
-      ["privacy", "support"].map((page) => ({
-        url: `${base}/${slug}/${page}/`,
-        lastModified: now,
-        changeFrequency: "yearly" as const,
-        priority: 0.3,
-      })),
-    ),
+    ...hostedLegalPages.map((p) => ({
+      url: `${base}${legalPath(p.slug, p.kind, p.lang)}`,
+      lastModified: now,
+      changeFrequency: "yearly" as const,
+      priority: 0.3,
+    })),
   ];
 }

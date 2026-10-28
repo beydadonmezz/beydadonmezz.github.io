@@ -78,18 +78,34 @@ export type Game = {
 /** One section of a legal or support page hosted on this site. */
 export type LegalSection = {
   heading: string;
+  /** Anchor id (e.g. "choices" for /<slug>/privacy/#choices); keep ids stable, other pages and apps link to them. */
+  id?: string;
   /** Paragraphs; a string[] entry renders as a bulleted list. */
   body: (React.ReactNode | React.ReactNode[])[];
+  /** Smaller sub-headings under this section (h3), e.g. the questions of a support page. */
+  subsections?: LegalSection[];
 };
 
 export type LegalDoc = {
   title: string;
   /** e.g. "18 October 2026"; omitted for the support page. */
   effective?: string;
+  /** Date of the latest change, if later than `effective`. */
+  updated?: string;
   /** Short intro shown under the title. */
   intro?: React.ReactNode;
+  /** "The short version": a highlighted list shown before the sections. */
+  summary?: { heading: string; items: React.ReactNode[] };
   sections: LegalSection[];
 };
 
-/** Privacy policy and support page served at /<slug>/privacy/ and /<slug>/support/. */
-export type HostedLegal = { privacy: LegalDoc; support: LegalDoc };
+/**
+ * Legal and support pages served at /<slug>/privacy/, /<slug>/terms/ and /<slug>/support/, and the Turkish
+ * versions in `tr` at /<slug>/tr/privacy/ ... (src/app/[game]/...).
+ */
+export type HostedLegal = {
+  privacy: LegalDoc;
+  support: LegalDoc;
+  terms?: LegalDoc;
+  tr?: { privacy?: LegalDoc; terms?: LegalDoc; support?: LegalDoc };
+};

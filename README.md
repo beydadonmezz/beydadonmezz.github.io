@@ -41,11 +41,13 @@ npm run build      # static site in ./out
 3. Put the game's published privacy / terms / support URLs in `legal` (Turkish versions under
    `legal.tr`). This site only links to them: legal pages are never copied into this repo, so the
    pages submitted to App Store Connect stay the single source.
-   Exception: a game whose legal pages live HERE (Quiltdoku). Its content is in `src/data/legal/<slug>.tsx`,
-   registered in `src/data/legal/index.ts`, and served at `/<slug>/privacy/` and `/<slug>/support/`; `legal`
-   then holds those site paths. These pages are the single source for that game (App Store Connect, Play
-   Console, AdMob and the app link to them), so keep their URLs stable and update the effective date with
-   every change.
+   Exception: a game whose legal pages live HERE (Sledpaws, since 2026-10-28; Quiltdoku until it was retired).
+   Its content is in `src/data/legal/<slug>.tsx`, registered in `src/data/legal/index.ts`, and served at
+   `/<slug>/privacy/`, `/<slug>/terms/` and `/<slug>/support/`, plus `/<slug>/tr/privacy/` ... for the Turkish
+   versions in `tr` (routes in `src/app/[game]/`, shared by `src/lib/legal-route.tsx`; only the pages a game has
+   are generated). `legal` then holds those site paths. These pages are the single source for that game (App
+   Store Connect, Play Console, AdMob and the app link to them), so keep their URLs and section ids stable and
+   update the "last updated" date with every change.
 4. When the game goes live, set `appStoreUrl` to its App Store link. While it is `null` the page shows a
    disabled "Coming soon to the App Store" button.
 

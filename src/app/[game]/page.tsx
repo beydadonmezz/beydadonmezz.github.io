@@ -292,8 +292,7 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
                   {i > 0 && " · "}
                   <a
                     href={l.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    {...(isExternal(l.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     className="text-fg/85 underline underline-offset-4 hover:text-fg"
                   >
                     {l.label}
