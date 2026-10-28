@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Game } from "@/data/types";
 import { isExternal } from "@/lib/games";
 import { GameIcon } from "./GameIcon";
+import { LangSwitch } from "./LangSwitch";
 import { ThemeToggle } from "./ThemeToggle";
 
 export function GameHeader({ game }: { game: Game }) {
@@ -25,6 +26,7 @@ export function GameHeader({ game }: { game: Game }) {
         </Link>
 
         <div className="flex items-center gap-4">
+          <LangSwitch slug={game.slug} />
           <ThemeToggle compact />
           <a
             href={game.legal.privacy}

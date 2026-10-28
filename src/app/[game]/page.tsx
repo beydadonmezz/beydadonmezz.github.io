@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { LingridLanding, lingridMetadata } from "@/components/LingridLanding";
 import { AppStoreButton } from "@/components/AppStoreButton";
 import { GameIcon } from "@/components/GameIcon";
 import { Reveal } from "@/components/Reveal";
@@ -17,6 +18,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ game: string }> }): Promise<Metadata> {
   const game = getGame((await params).game);
+  if (game.slug === "lingrid") return lingridMetadata("tr");
   const title = `${game.name}: ${game.subtitle}`;
   return {
     title,
@@ -36,6 +38,8 @@ export async function generateMetadata({ params }: { params: Promise<{ game: str
 
 export default async function GamePage({ params }: { params: Promise<{ game: string }> }) {
   const game = getGame((await params).game);
+  // LINGRID has its own bilingual store landing with the smart link (see README).
+  if (game.slug === "lingrid") return <LingridLanding lang="tr" />;
   const shots = game.screenshots;
   const legal = [
     game.legal.support && { label: "Support", href: game.legal.support },
