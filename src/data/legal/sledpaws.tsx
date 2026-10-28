@@ -223,7 +223,9 @@ const privacyEn: HostedLegal["privacy"] = {
           </>,
           <>
             <strong>In the game</strong>: you can change your ad and privacy choices at any time in{" "}
-            {ui("Settings → Privacy")}.
+            {ui("Settings → Privacy")}. Where the law requires this choice (for example in the EEA, the UK, Switzerland
+            and some US states), the button opens Google&rsquo;s privacy options; elsewhere it opens this policy, and
+            ads are already shown under the rules of your region.
           </>,
           <>
             <strong>Android</strong>: you can reset or delete your advertising ID in your phone&rsquo;s settings (
@@ -941,7 +943,9 @@ const privacyTr: HostedLegal["privacy"] = {
           </>,
           <>
             <strong>Oyunda</strong>: reklam ve gizlilik tercihlerini istediğin zaman {ui("Ayarlar → Gizlilik")}{" "}
-            bölümünden değiştirebilirsin.
+            bölümünden değiştirebilirsin. Yasanın bu seçimi gerektirdiği yerlerde (örneğin AEA, Birleşik Krallık, İsviçre
+            ve bazı ABD eyaletleri) bu düğme Google&rsquo;ın gizlilik seçeneklerini açar; diğer yerlerde bu politikayı
+            açar ve reklamlar zaten bölgenin kurallarına göre gösterilir.
           </>,
           <>
             <strong>Android</strong>: reklam kimliğini telefonunun ayarlarından (telefona göre{" "}
