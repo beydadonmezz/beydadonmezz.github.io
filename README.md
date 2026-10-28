@@ -64,7 +64,8 @@ the near-black background.
 - `scripts/check-counts.mjs`: the project counts rendered on the home page agree
   (heading = All = Web + Mobile + Games, and "Show all N"). Games count as projects. All counts
   come from `countProjects()` in `src/lib/project-counts.ts`.
-- `scripts/check-assets.mjs`: every local `src` / `srcset` in the built HTML exists.
+- `scripts/check-assets.mjs`: every local `src` / `srcset` in the built HTML exists, and so does every page listed
+  in `out/sitemap.xml` (this covers the static Fishburg pages in `public/fishburg/`).
 - `scripts/check-app-ads.mjs`: `out/app-ads.txt` exists with the exact DIRECT lines for AdMob
   (`pub-6308223268641775`), Unity Ads and Liftoff Monetize, and `out/` has no `lingrid-site/`, `fishburg-site/`
   or `snugpath-site/` folder (self-tested).
@@ -81,9 +82,10 @@ the near-black background.
   published: its `/`, `/privacy`, `/terms`, `/support`, `/indir`, `/tr/…` are permanent redirect stubs to the new
   `/lingrid/…` URLs (old store listings, the shipped app and AdMob still link to them), and its `app/**` files are the
   JSON the shipped app downloads (min-version, errata, packs, d2): never unpublish, redirect or rename them.
-  App Store Connect (and AdMob's consent message, and the apps themselves) point to the pages of the other two repos:
-  `https://beydadonmezz.github.io/fishburg-site/privacy/` (incl. `#choices`), `/support/`, `/terms/`,
-  `/tr/…`, and `https://beydadonmezz.github.io/snugpath-site/privacy`, `/terms`, `/tr/gizlilik`, `/tr/kosullar`.
+  `fishburg-site` is the same since 2026-10-28: its pages (`/`, `/privacy/` incl. `#choices`, `/terms/`, `/support/`,
+  `/delete-account/`, `/tr/…`) redirect to `/fishburg/…` (see "Fishburg pages" below), and App Store Connect, Play
+  Console, AdMob's consent message and older app builds still point to them. App Store Connect points to
+  `https://beydadonmezz.github.io/snugpath-site/privacy`, `/terms`, `/tr/gizlilik`, `/tr/kosullar`.
   GitHub Pages serves those project repos on their paths ahead of this repo. Don't unpublish or rename them, and
   don't create `lingrid-site/`, `fishburg-site/` or `snugpath-site/` folders here.
 - Bubble Sway and Puzzle Numbers publish their legal pages on their own domains
@@ -133,3 +135,11 @@ LINGRID's privacy policy, terms and support pages are served from this repo unde
   redirect a fetch), the next app release switches to this base. Every data publish must run BOTH scripts of the app
   repo: `scripts/publish-legal-web.sh` (this repo) and `scripts/publish-legal.sh` (lingrid-site). Never redirect or
   hand-edit these files.
+
+## Fishburg pages (static, copied from the Fishburg repo)
+
+`/fishburg/` and its privacy, terms, support and delete-account pages (English, and Turkish under `/fishburg/tr/`) are
+plain static HTML in `public/fishburg/`. Their single source is the `site/` folder of the Fishburg repo, which also
+tests them against the app; copy them with the commands in that folder's `README.md` and never edit them here. The
+entry in `src/data/games.ts` sets `staticSite`, so `app/[game]` generates no page for Fishburg, links to it are plain
+`<a>` (`GameLink`), the sitemap lists every page, and `npm run build` fails if one of them is missing from `out/`.

@@ -22,6 +22,8 @@ type Item = {
   description: string;
   href: string | null;
   external: boolean;
+  /** A same-site page the router doesn't know (a game's static pages): plain <a>, no new tab. */
+  reload?: boolean;
   category: Exclude<Filter, "all">;
   awards: Award[];
   image: string | null;
@@ -54,6 +56,7 @@ export function Projects({ projects, games }: { projects: Project[]; games: Game
         description: g.tagline,
         href: `/${g.slug}/`,
         external: false,
+        reload: !!g.staticSite,
         category: "games" as const,
         awards: [],
         image: g.screenshots[0]?.src ?? g.icon,
@@ -306,6 +309,10 @@ function Row({ item, index, onHover }: { item: Item; index: number; onHover: (i:
     >
       {content}
       <span className="sr-only"> (opens in a new tab)</span>
+    </a>
+  ) : item.reload ? (
+    <a href={item.href} className={className} {...handlers}>
+      {content}
     </a>
   ) : (
     <Link href={item.href} className={className} {...handlers}>

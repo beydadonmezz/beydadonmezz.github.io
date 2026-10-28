@@ -16,6 +16,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
+    ...games.flatMap((g) =>
+      (g.staticSite ?? [])
+        .filter((page) => page !== "")
+        .map((page) => ({
+          url: `${base}/${g.slug}/${page}/`,
+          lastModified: now,
+          changeFrequency: "yearly" as const,
+          priority: 0.3,
+        })),
+    ),
     ...hostedLegalPages.map((p) => ({
       url: `${base}${legalPath(p.slug, p.kind, p.lang)}`,
       lastModified: now,

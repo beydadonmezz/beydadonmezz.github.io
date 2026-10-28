@@ -3,17 +3,18 @@ import Link from "next/link";
 import { LingridLanding, lingridMetadata } from "@/components/LingridLanding";
 import { AppStoreButton } from "@/components/AppStoreButton";
 import { GameIcon } from "@/components/GameIcon";
+import { GameLink } from "@/components/GameLink";
 import { Reveal } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
 import { games } from "@/data/games";
 import { profile } from "@/data/profile";
-import { getGame, isExternal } from "@/lib/games";
+import { generatedGameParams, getGame, isExternal } from "@/lib/games";
 import { screenSrcSet } from "@/lib/images";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return games.map((g) => ({ game: g.slug }));
+  return generatedGameParams();
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ game: string }> }): Promise<Metadata> {
@@ -316,8 +317,8 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
         <ul className="mt-8 grid gap-4 sm:grid-cols-3">
           {others.map((g) => (
             <li key={g.slug}>
-              <Link
-                href={`/${g.slug}/`}
+              <GameLink
+                game={g}
                 className="group flex items-center gap-4 rounded-2xl border border-line p-4 transition-colors duration-500 hover:border-fg/30"
               >
                 <GameIcon game={g} size={56} className="transition-transform duration-500 group-hover:-rotate-6" />
@@ -325,7 +326,7 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
                   <span className="block truncate font-display text-lg font-semibold tracking-tight">{g.name}</span>
                   <span className="block truncate text-sm text-muted">{g.subtitle}</span>
                 </span>
-              </Link>
+              </GameLink>
             </li>
           ))}
         </ul>

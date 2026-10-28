@@ -1,7 +1,7 @@
-import Link from "next/link";
 import type { Game } from "@/data/types";
 import { gameStyle } from "@/lib/games";
 import { GameIcon } from "./GameIcon";
+import { GameLink } from "./GameLink";
 import { Reveal } from "./Reveal";
 import { SectionLabel } from "./SectionLabel";
 
@@ -29,8 +29,8 @@ export function Games({ games }: { games: Game[] }) {
       <ul className="mt-16 grid gap-4 md:mt-24 md:grid-cols-2 md:gap-5">
         {games.map((game, i) => (
           <Reveal as="li" key={game.slug} delay={(i % 2) * 0.1}>
-            <Link
-              href={`/${game.slug}/`}
+            <GameLink
+              game={game}
               className="game-scope group relative flex h-full min-h-[22rem] flex-col overflow-hidden rounded-[1.75rem] border border-line bg-bg-raised p-6 transition-colors duration-500 hover:border-fg/25 md:min-h-[28rem] md:p-9"
               style={gameStyle(game)}
             >
@@ -61,7 +61,7 @@ export function Games({ games }: { games: Game[] }) {
                   </span>
                 </span>
               </span>
-            </Link>
+            </GameLink>
           </Reveal>
         ))}
       </ul>

@@ -1,12 +1,11 @@
 import { Footer } from "@/components/Footer";
 import { GameHeader } from "@/components/GameHeader";
-import { games } from "@/data/games";
-import { getGame, gameStyle } from "@/lib/games";
+import { generatedGameParams, getGame, gameStyle } from "@/lib/games";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return games.map((g) => ({ game: g.slug }));
+  return generatedGameParams();
 }
 
 export default async function GameLayout({

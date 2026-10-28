@@ -73,6 +73,12 @@ export type Game = {
    * for games whose pages live here (`hostedLegal` in src/data/legal/).
    */
   legal: LegalLinks & { tr?: Partial<LegalLinks> };
+  /**
+   * The game's pages are static HTML in public/<slug>/ (copied from the game's own repo), so no
+   * page is generated for it and links to it do a full page load. Lists every page as a path
+   * relative to /<slug>/ ("" is the home page), for the sitemap and the post-build check.
+   */
+  staticSite?: string[];
 };
 
 /** One section of a legal or support page hosted on this site. */

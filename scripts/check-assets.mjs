@@ -1,5 +1,5 @@
 // Post-build guard: every local src / srcset / og:image referenced by the
-// built HTML must exist in out/ (e.g. generated image variants).
+// built HTML must exist in out/ (e.g. generated image variants), and so must every page in sitemap.xml.
 import fs from "node:fs";
 import path from "node:path";
 
@@ -30,6 +30,14 @@ for (const file of html) {
     if (!ok) missing.add(`${u}  (in ${path.relative(out, file)})`);
   }
 }
+// Every page in the sitemap must exist, including the static game pages copied into public/<slug>/.
+const sitemap = path.join(out, "sitemap.xml");
+for (const [, url] of fs.existsSync(sitemap) ? fs.readFileSync(sitemap, "utf8").matchAll(/<loc>([^<]+)<\/loc>/g) : []) {
+  checked++;
+  const page = path.join(out, decodeURIComponent(new URL(url).pathname), "index.html");
+  if (!fs.existsSync(page)) missing.add(`${url}  (in sitemap.xml)`);
+}
+
 if (missing.size) {
   console.error(`✗ Missing assets referenced by the built HTML:\n  - ${[...missing].join("\n  - ")}\n  Run: sh scripts/game-image-variants.sh`);
   process.exit(1);
