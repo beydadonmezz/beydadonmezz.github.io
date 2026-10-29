@@ -39,3 +39,45 @@ export function AppStoreButton({ game }: { game: Game }) {
     </a>
   );
 }
+
+function PlayLogo({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden className={className} fill="currentColor">
+      <path d="M3.6 1.8a1.4 1.4 0 0 0-.6 1.2v18c0 .5.2.9.6 1.2L13.9 12 3.6 1.8zm11.4 11.3 2.6 2.6-11.9 6.8 9.3-9.4zm0-2.2L5.7 1.5l11.9 6.8-2.6 2.6zm3.9-1.8 3 1.7c.8.5.8 1.9 0 2.4l-3 1.7-2.9-2.9 2.9-2.9z" />
+    </svg>
+  );
+}
+
+/** Rendered only for games with an Android version (`playStoreUrl` set, null until it is live). */
+export function PlayStoreButton({ game }: { game: Game }) {
+  if (game.playStoreUrl === undefined) return null;
+  if (!game.playStoreUrl) {
+    return (
+      <span
+        role="link"
+        aria-disabled="true"
+        className="inline-flex h-16 cursor-not-allowed items-center gap-3 rounded-2xl border border-dashed border-fg/30 px-5 text-fg/75"
+      >
+        <PlayLogo className="size-7 opacity-60" />
+        <span className="flex flex-col leading-tight">
+          <span className="text-[0.7rem] tracking-wide text-muted">Coming soon to</span>
+          <span className="text-lg font-semibold tracking-tight">Google Play</span>
+        </span>
+      </span>
+    );
+  }
+  return (
+    <a
+      href={game.playStoreUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex h-16 items-center gap-3 rounded-2xl bg-fg px-5 text-bg transition-transform duration-500 hover:-translate-y-0.5 active:scale-95"
+    >
+      <PlayLogo className="size-7" />
+      <span className="flex flex-col leading-tight">
+        <span className="text-[0.7rem] tracking-wide">Get it on</span>
+        <span className="text-lg font-semibold tracking-tight">Google Play</span>
+      </span>
+    </a>
+  );
+}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LingridLanding, lingridMetadata } from "@/components/LingridLanding";
-import { AppStoreButton } from "@/components/AppStoreButton";
+import { AppStoreButton, PlayStoreButton } from "@/components/AppStoreButton";
 import { GameIcon } from "@/components/GameIcon";
 import { GameLink } from "@/components/GameLink";
 import { Reveal } from "@/components/Reveal";
@@ -46,6 +46,7 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
     game.legal.support && { label: "Support", href: game.legal.support },
     { label: "Privacy Policy", href: game.legal.privacy },
     game.legal.terms && { label: "Terms of Use", href: game.legal.terms },
+    game.legal.deleteData && { label: "Delete your data", href: game.legal.deleteData },
   ].filter((l): l is { label: string; href: string } => !!l);
   const legalTr = game.legal.tr
     ? [
@@ -100,6 +101,7 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-5">
               <AppStoreButton game={game} />
+              <PlayStoreButton game={game} />
               <p className="text-sm text-muted">
                 {game.platforms}
                 {game.website && (

@@ -26,7 +26,7 @@ export type Project = {
   height: number;
 };
 
-export type LegalLinks = { privacy: string; terms?: string; support?: string };
+export type LegalLinks = { privacy: string; terms?: string; support?: string; /** Online data deletion page. */ deleteData?: string };
 
 export type GameFeature = { title: string; body: string };
 
@@ -62,6 +62,8 @@ export type Game = {
   theme: { accent: string; accentOnLight: string; secondary: string };
   /** null renders a disabled "Coming soon to the App Store" state. */
   appStoreUrl: string | null;
+  /** Android games only: null renders "Coming soon to Google Play"; leave it out for iOS-only games. */
+  playStoreUrl?: string | null;
   platforms: string;
   /** Support contact shown on the game page. */
   supportEmail: string | null;
