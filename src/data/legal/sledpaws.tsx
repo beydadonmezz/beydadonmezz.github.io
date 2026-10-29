@@ -48,7 +48,7 @@ const contact = (label: string) => (
 const privacyEn: HostedLegal["privacy"] = {
   title: "Privacy Policy",
   effective: "21 October 2026",
-  updated: "28 October 2026",
+  updated: "29 October 2026",
   summary: {
     heading: "The short version",
     items: [
@@ -62,11 +62,7 @@ const privacyEn: HostedLegal["privacy"] = {
       <>
         We use <strong>Google Firebase</strong> to see how the game is played (Analytics), to fix crashes
         (Crashlytics) and to adjust game settings (Remote Config). This data is linked to a random app ID, not to
-        you.{" "}
-        <em>
-          The first test versions (0.1.x) do not include Firebase yet; section {go("#analytics", "6")} applies from
-          the version that adds it.
-        </em>
+        you. Analytics stores data only as your consent choices allow.
       </>,
       "Purchases (gem packs, coin packs, a starter pack, Remove Ads) go through the App Store or Google Play. We never see your card details.",
       <>
@@ -241,9 +237,10 @@ const privacyEn: HostedLegal["privacy"] = {
       heading: "6. Analytics, crash reports and game settings (Google Firebase)",
       body: [
         <>
-          <strong>Not in the game yet:</strong> the first test versions (0.1.x) do not include Firebase and send no
-          analytics, crash reports or Remote Config requests. The services below start with the version that adds
-          them; we will update this policy&rsquo;s date then.
+          Analytics follows your choices in section{" "}
+          {go("#choices", "5")}: until you have answered the consent form (where it is shown), and if you do not agree
+          to measurement there, Analytics stores no data about you; advertising signals (ad storage, ad personalisation)
+          are used only for players who are not children and only if you allowed them.
         </>,
         [
           <>
@@ -767,7 +764,7 @@ const supportEn: HostedLegal["support"] = {
 const privacyTr: HostedLegal["privacy"] = {
   title: "Gizlilik Politikası",
   effective: "21 Ekim 2026",
-  updated: "28 Ekim 2026",
+  updated: "29 Ekim 2026",
   summary: {
     heading: "Kısaca",
     items: [
@@ -782,11 +779,7 @@ const privacyTr: HostedLegal["privacy"] = {
       <>
         Oyunun nasıl oynandığını görmek (Analytics), çökmeleri düzeltmek (Crashlytics) ve oyun ayarlarını değiştirmek
         (Remote Config) için <strong>Google Firebase</strong> kullanırız. Bu veriler seninle değil, rastgele bir
-        uygulama kimliğiyle ilişkilidir.{" "}
-        <em>
-          İlk test sürümlerinde (0.1.x) Firebase henüz yoktur; {go("#analytics", "6. bölüm")}, onu ekleyen sürümden
-          itibaren geçerlidir.
-        </em>
+        uygulama kimliğiyle ilişkilidir. Analytics yalnızca izin seçimlerinin elverdiği kadar veri saklar.
       </>,
       "Satın almalar (elmas paketleri, altın paketleri, başlangıç paketi, Reklamları Kaldır) App Store ya da Google Play üzerinden yapılır. Kart bilgilerini hiçbir zaman görmeyiz.",
       <>
@@ -965,9 +958,10 @@ const privacyTr: HostedLegal["privacy"] = {
       heading: "6. Analiz, çökme raporları ve oyun ayarları (Google Firebase)",
       body: [
         <>
-          <strong>Henüz oyunda değil:</strong> ilk test sürümleri (0.1.x) Firebase içermez; analiz verisi, çökme raporu
-          ya da Remote Config isteği göndermez. Aşağıdaki hizmetler onları ekleyen sürümle başlar; o zaman bu
-          politikanın tarihini güncelleriz.
+          Analytics {go("#choices", "5. bölümdeki")} seçimlerine
+          uyar: izin formunu yanıtlayana kadar (formun gösterildiği yerlerde) ve orada ölçüme izin vermezsen Analytics
+          senin hakkında veri saklamaz; reklam sinyalleri (reklam depolama, reklam kişiselleştirme) yalnızca çocuk olmayan
+          oyuncular için ve yalnızca izin verdiysen kullanılır.
         </>,
         [
           <>
