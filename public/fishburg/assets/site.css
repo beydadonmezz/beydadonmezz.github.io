@@ -477,6 +477,51 @@ details > :last-child {
   text-decoration: none;
 }
 
+/* Round A11: "Follow us": the studio's official accounts. Each network's own mark, unmodified, in
+   flat black (light) or white (dark), no container; 44 px tap targets. */
+
+.site-footer .follow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+}
+
+.site-footer .follow-label {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.site-footer .follow ul {
+  display: flex;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer .follow a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  color: #000000;
+}
+
+.site-footer .follow svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+@media (prefers-color-scheme: dark) {
+  .site-footer .follow a {
+    color: #ffffff;
+  }
+}
+
 /* Screenshots on the home page: real captures, landscape. */
 
 .shots {
