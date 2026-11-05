@@ -15,6 +15,9 @@ type Lang = "tr" | "en";
 const tr = {
   eyebrow: "Türkçe ipucu, İngilizce cevap",
   tagline: "Her ipucu bir Türkçe kelime, cevap İngilizce karşılığı: İngilizce öğreten bir bulmaca.",
+  // Search text spells the brand "Lingrid": all-caps LINGRID lower-cases to "lıngrıd" under Turkish rules.
+  metaTitle: "Lingrid (LINGRID): İngilizce kelime bulmacası",
+  metaDescription: "Lingrid ile İngilizce kelime öğren: her ipucu bir Türkçe kelime, cevap İngilizce karşılığı. A1'den B2'ye 350'den fazla bulmaca, iPhone ve Android'de ücretsiz.",
   meta: "iPhone ve Android · Ücretsiz · Hesap gerekmez",
   qrTitle: "Telefonunla tara",
   qrText: "Kamerayı karekoda tut, mağaza sayfası açılsın.",
@@ -99,6 +102,7 @@ export async function LingridLanding({ lang }: { lang: Lang }) {
     "@context": "https://schema.org",
     "@type": "VideoGame",
     name: game.name,
+    alternateName: "Lingrid",
     description: t.tagline,
     inLanguage: lang,
     gamePlatform: ["iOS", "Android"],
@@ -312,11 +316,11 @@ export async function LingridLanding({ lang }: { lang: Lang }) {
 export function lingridMetadata(lang: Lang) {
   const game = getGame("lingrid");
   const en = lang === "en";
-  const title = en ? `${game.name}: ${game.subtitle}` : `${game.name}: Türkçe ipucu, İngilizce cevap`;
-  const description = en ? game.tagline : tr.tagline;
+  const title = en ? `${game.name}: ${game.subtitle}` : tr.metaTitle;
+  const description = en ? game.tagline : tr.metaDescription;
   const path = en ? "/lingrid/en/" : "/lingrid/";
   return {
-    title,
+    title: en ? title : { absolute: title },
     description,
     alternates: { canonical: path, languages: { tr: "/lingrid/", en: "/lingrid/en/", "x-default": "/lingrid/" } },
     openGraph: {
